@@ -1,0 +1,67 @@
+{
+    "name": "@hoodoo/acme",
+    "version": "1.0.0",
+    "description": "A tool to generate Storybook stories from AEM content.",
+    "main": "index.js",
+    "bin": {
+        "acme": "./index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint:fix": "eslint *.js --fix",
+        "lint": "eslint *.js",
+        "prettify": "prettier *.js --write"
+    },
+    "keywords": [
+        "aem",
+        "storybook"
+    ],
+    "author": "Meghashyam Adoni <meghashyam@hoodoo.digital>",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git@gitlab.com:hoodoo-digital/acme.git"
+    },
+    "dependencies": {
+        "camelcase": "^6.0.0",
+        "chalk": "^4.0.0",
+        "cheerio": "^1.0.0-rc.3",
+        "content-type": "^1.0.4",
+        "debug": "^4.1.1",
+        "execa": "^4.0.0",
+        "humanize-string": "^2.1.0",
+        "jsonpath-plus": "^4.0.0",
+        "mime-types": "^2.1.27",
+        "mkdirp": "^1.0.4",
+        "node-fetch": "^2.6.0",
+        "yargs": "^15.3.1",
+        "yargs-interactive": "^3.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.0",
+        "prettier": "^2.0.5"
+    },
+    "peerDependencies": {
+        "hygen": "^5.0.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.(js|html|css|json)": [
+            "prettier --write"
+        ],
+        "*.js": [
+            "eslint --fix"
+        ]
+    }
+}
