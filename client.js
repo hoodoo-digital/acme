@@ -43,6 +43,11 @@ const getComponentTemplate = async (
     )
     const filename = title.replace(/\s+/g, '-') + extension
     return getData(componentContentUrl)
+            .then(async (response) => {
+                const html = await core.getHtml(response)
+                getContent(html)
+                return response
+            })
         .then((response) => {
             return core.writeToFile(response, `${componentDir}/${filename}`)
         })
@@ -107,25 +112,45 @@ const getAllComponents = async () => {
         .then(Promise.all.bind(Promise))
 }
 
+const getContent = async (html) => {
+    const resourcePaths = core.parseHtml(html)
+
+    resourcePaths
+        .forEach((resourcePath) => {
+            const filename = path.basename(resourcePath)
+            const filepath = path.dirname(resourcePath)
+
+            const targetPath = path.join(assetsDir, filepath)
+            // console.log(baseURL + resourcePath)
+            mkdirp.sync(targetPath)
+            const url = !/^http/.test(resourcePath) ? baseURL + resourcePath : resourcePath
+            getData(url).then((response) => {
+                core.writeToFile(
+                    response,
+                    `${targetPath}/${filename}`
+                )
+            })
+        })
+}
+
 const getResources = async () => {
-    getData(utils.getContentUrl(componentContent))
+    getData(utils.getContentUrl(storybookContentPath))
         .then(core.getHtml)
         .then((html) => {
             const resourcePaths = core.parseHtml(html)
+            const targetPath = assetsDir + '/resources'
+            mkdirp.sync(targetPath)
             resourcePaths
-                .filter((p) => !/^http/.test(p))
+                // .filter((p) => !/^http/.test(p))
                 .forEach((resourcePath) => {
-                    const targetPath =
-                        assetsDir + '/public' + path.dirname(resourcePath)
                     const filename = path.basename(resourcePath)
                     // console.log(baseURL + resourcePath)
-                    getData(baseURL + resourcePath).then((response) => {
-                        mkdirp(targetPath).then((made) => {
-                            core.writeToFile(
-                                response,
-                                `${targetPath}/${filename}`
-                            )
-                        })
+                    const url = !/^http/.test(resourcePath) ? baseURL + resourcePath : resourcePath
+                    getData(url).then((response) => {
+                        core.writeToFile(
+                            response,
+                            `${targetPath}/${filename}`
+                        )
                     })
                 })
         })

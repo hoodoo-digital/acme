@@ -35,6 +35,7 @@ yargs
             })
             client.getAllComponents()
             client.getPolicies()
+            client.getResources()
         }
     )
     .command(
