@@ -1,6 +1,5 @@
 const fs = require('fs')
 const fsPromises = fs.promises
-const cheerio = require('cheerio')
 const prettier = require('prettier')
 
 const getContentUrl = (path) => {
@@ -24,10 +23,7 @@ const writeToFile = async (path, data) => {
 }
 
 const tidy = (html) => {
-    const $ = cheerio.load(html, {
-        xmlMode: true
-    })
-    return prettier.format($.html(), { parser: 'html' })
+    return prettier.format(html, { parser: 'html' })
 }
 
 exports.getContentUrl = getContentUrl
