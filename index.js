@@ -2,7 +2,7 @@
 
 const yargs = require('yargs')
 const client = require('./client')
-const createStories = require('./create-stories')
+const { createStories, generatePreviewHeadHtml } = require('./create')
 
 // eslint-disable-next-line no-unused-expressions
 yargs
@@ -51,6 +51,7 @@ yargs
         },
         (argv) => {
             createStories(argv.source)
+            generatePreviewHeadHtml(argv.source)
         }
     )
     .usage('Usage: $0 <command> <options>')

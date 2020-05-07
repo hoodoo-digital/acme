@@ -8,6 +8,15 @@ const chalk = require('chalk')
 
 const fs = require('fs')
 
+const storybookTemplatePath = path.join(__dirname, '_templates')
+const execOptions = {
+    env: {
+        HYGEN_TMPLS: storybookTemplatePath,
+        HYGEN_OVERWRITE: 1
+    },
+    stdio: 'inherit'
+}
+
 const createStories = async (assetsPath) => {
     const componentsPath = path.join(assetsPath, 'components')
     // Path relative to assetsPath
@@ -21,14 +30,6 @@ const createStories = async (assetsPath) => {
         if (component.isDirectory()) {
             const logMsg = chalk.green.bold(component.name)
             log(`Found ${logMsg} component`)
-            const storybookTemplatePath = path.join(__dirname, '_templates')
-            const execOptions = {
-                env: {
-                    HYGEN_TMPLS: storybookTemplatePath,
-                    HYGEN_OVERWRITE: 1
-                }
-                // stdio: 'inherit'
-            }
 
             try {
                 log(`Creating stories file for ${logMsg}`)
@@ -88,5 +89,29 @@ const createStories = async (assetsPath) => {
     }
 }
 
+const generatePreviewHeadHtml = async (assetsPath) => {
+    const resourcesPath = path.join(assetsPath, 'resources')
+    const resources = await fs.promises.readdir(resourcesPath, {
+        withFileTypes: true
+    })
+    const resourcesRelPath = resources.map((resource) => {
+        return path.sep + path.join('resources', resource.name)
+    })
+    log('Generating preview-head.html file')
+    await execa(
+        'npx',
+        [
+            '--no-install',
+            'hygen',
+            'preview',
+            'new',
+            '--resourceList',
+            resourcesRelPath.join()
+        ],
+        execOptions
+    )
+}
+
 // createStories(argv.path).catch(console.error)
-module.exports = createStories
+exports.createStories = createStories
+exports.generatePreviewHeadHtml = generatePreviewHeadHtml

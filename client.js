@@ -137,6 +137,7 @@ const getResources = async () => {
         .then((html) => {
             const resourcePaths = core.parseHtml(html)
             const targetPath = path.join(assetsDir, 'resources')
+            mkdirp.sync(targetPath)
             resourcePaths
                 .filter((p) => {
                     // TODO - Define whitelist in config
@@ -151,11 +152,14 @@ const getResources = async () => {
                     const url = isExternal
                         ? resourcePath
                         : baseURL + resourcePath
-                    const subDir = isExternal ? 'external' : 'clientlibs'
-                    const dest = path.join(targetPath, subDir)
-                    mkdirp.sync(dest)
+                    // const subDir = isExternal ? 'external' : 'clientlibs'
+                    // const dest = path.join(targetPath, subDir)
+                    // mkdirp.sync(dest)
                     getData(url).then((response) => {
-                        core.writeToFile(response, path.join(dest, filename))
+                        core.writeToFile(
+                            response,
+                            path.join(targetPath, filename)
+                        )
                     })
                 })
         })
