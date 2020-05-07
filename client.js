@@ -139,8 +139,10 @@ const getResources = async () => {
             const targetPath = path.join(assetsDir, 'resources')
             resourcePaths
                 .filter((p) => {
-                    const test = ''.includes.bind(p)
-                    return !['clientlib-base', 'contexthub'].some(test)
+                    // TODO - Define whitelist in config
+                    return ['clientlib-base', 'http'].some((x) =>
+                        p.includes(x)
+                    )
                 })
                 .forEach((resourcePath) => {
                     const filename = path.basename(resourcePath)
