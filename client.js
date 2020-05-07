@@ -42,9 +42,13 @@ const getComponentTemplate = async (
         )} state of ${componentLogMsg} component`
     )
     const filename = title.replace(/\s+/g, '-') + extension
+    const writeToFile = utils.writeToFile.bind(
+        null,
+        `${componentDir}/${filename}`
+    )
     return getData(componentContentUrl)
         .then((response) => {
-            return core.writeToFile(response, `${componentDir}/${filename}`)
+            return core.getHtml(response).then(utils.tidy).then(writeToFile)
         })
         .catch((error) => {
             throw new Error(error)
