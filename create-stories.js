@@ -10,7 +10,9 @@ const fs = require('fs')
 
 const createStories = async (assetsPath) => {
     const componentsPath = path.join(assetsPath, 'components')
-    const policiesPath = path.join(assetsPath, 'policies')
+    // Path relative to assetsPath
+    const policiesRelPath = path.sep + 'policies'
+    const componentsRelPath = path.sep + 'components'
     const components = await fs.promises.readdir(componentsPath, {
         withFileTypes: true
     })
@@ -40,12 +42,15 @@ const createStories = async (assetsPath) => {
                         'new',
                         component.name,
                         '--policiesPath',
-                        policiesPath
+                        policiesRelPath
                     ],
                     execOptions
                 )
-                const templatesPath =
-                    componentsPath + path.sep + component.name
+                const templatesPath = path.join(componentsPath, component.name)
+                const templatesRelPath = path.join(
+                    componentsRelPath,
+                    component.name
+                )
                 const templates = await fs.promises.readdir(templatesPath, {
                     withFileTypes: true
                 })
@@ -70,7 +75,7 @@ const createStories = async (assetsPath) => {
                             '--storyName',
                             storyName,
                             '--templatePath',
-                            templatesPath + path.sep + template.name
+                            path.join(templatesRelPath, template.name)
                         ],
                         execOptions
                     )
