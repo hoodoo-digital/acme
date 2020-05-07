@@ -136,18 +136,24 @@ const getResources = async () => {
         .then(core.getHtml)
         .then((html) => {
             const resourcePaths = core.parseHtml(html)
-            const targetPath = assetsDir + '/resources'
-            mkdirp.sync(targetPath)
+            const targetPath = path.join(assetsDir, 'resources')
             resourcePaths
-                // .filter((p) => !/^http/.test(p))
+                .filter((p) => {
+                    const test = ''.includes.bind(p)
+                    return !['clientlib-base', 'contexthub'].some(test)
+                })
                 .forEach((resourcePath) => {
                     const filename = path.basename(resourcePath)
                     // console.log(baseURL + resourcePath)
-                    const url = !/^http/.test(resourcePath)
-                        ? baseURL + resourcePath
-                        : resourcePath
+                    const isExternal = /^http/.test(resourcePath)
+                    const url = isExternal
+                        ? resourcePath
+                        : baseURL + resourcePath
+                    const subDir = isExternal ? 'external' : 'clientlibs'
+                    const dest = path.join(targetPath, subDir)
+                    mkdirp.sync(dest)
                     getData(url).then((response) => {
-                        core.writeToFile(response, `${targetPath}/${filename}`)
+                        core.writeToFile(response, path.join(dest, filename))
                     })
                 })
         })
