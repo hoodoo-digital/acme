@@ -13,8 +13,8 @@ const execOptions = {
     env: {
         HYGEN_TMPLS: storybookTemplatePath,
         HYGEN_OVERWRITE: 1
-    },
-    stdio: 'inherit'
+    }
+    // stdio: 'inherit'
 }
 
 const createStories = async (assetsPath) => {
