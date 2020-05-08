@@ -9,7 +9,6 @@ let getData,
     baseURL,
     storybookContentPath,
     componentsContainer,
-    componentContent,
     assetsDir,
     policiesPath
 
@@ -47,8 +46,10 @@ const getComponentTemplate = async (
         `${componentDir}/${filename}`
     )
     return getData(componentContentUrl)
-        .then((response) => {
-            return core.getHtml(response).then(utils.tidy).then(writeToFile)
+        .then(async (response) => {
+            const html = await core.getHtml(response)
+            getContent(html)
+            writeToFile(utils.tidy(html))
         })
         .catch((error) => {
             throw new Error(error)
@@ -111,25 +112,54 @@ const getAllComponents = async () => {
         .then(Promise.all.bind(Promise))
 }
 
+const getContent = async (html) => {
+    const resourcePaths = core.parseHtml(html)
+
+    resourcePaths.forEach((resourcePath) => {
+        const filename = path.basename(resourcePath)
+        const filepath = path.dirname(resourcePath)
+
+        const targetPath = path.join(assetsDir, filepath)
+        // console.log(baseURL + resourcePath)
+        mkdirp.sync(targetPath)
+        const url = !/^http/.test(resourcePath)
+            ? baseURL + resourcePath
+            : resourcePath
+        getData(url).then((response) => {
+            core.writeToFile(response, `${targetPath}/${filename}`)
+        })
+    })
+}
+
 const getResources = async () => {
-    getData(utils.getContentUrl(componentContent))
+    getData(utils.getContentUrl(storybookContentPath))
         .then(core.getHtml)
         .then((html) => {
             const resourcePaths = core.parseHtml(html)
+            const targetPath = path.join(assetsDir, 'resources')
+            mkdirp.sync(targetPath)
             resourcePaths
-                .filter((p) => !/^http/.test(p))
+                .filter((p) => {
+                    // TODO - Define whitelist in config
+                    return ['clientlib-base', 'http'].some((x) =>
+                        p.includes(x)
+                    )
+                })
                 .forEach((resourcePath) => {
-                    const targetPath =
-                        assetsDir + '/public' + path.dirname(resourcePath)
                     const filename = path.basename(resourcePath)
                     // console.log(baseURL + resourcePath)
-                    getData(baseURL + resourcePath).then((response) => {
-                        mkdirp(targetPath).then((made) => {
-                            core.writeToFile(
-                                response,
-                                `${targetPath}/${filename}`
-                            )
-                        })
+                    const isExternal = /^http/.test(resourcePath)
+                    const url = isExternal
+                        ? resourcePath
+                        : baseURL + resourcePath
+                    // const subDir = isExternal ? 'external' : 'clientlibs'
+                    // const dest = path.join(targetPath, subDir)
+                    // mkdirp.sync(dest)
+                    getData(url).then((response) => {
+                        core.writeToFile(
+                            response,
+                            path.join(targetPath, filename)
+                        )
                     })
                 })
         })
