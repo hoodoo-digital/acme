@@ -34,9 +34,10 @@
         "mime-types": "^2.1.27",
         "mkdirp": "^1.0.4",
         "node-fetch": "^2.6.0",
+        "prettier": "^2.0.5",
+        "prompts": "^2.3.2",
         "yargs": "^15.3.1",
-        "yargs-interactive": "^3.0.0",
-        "prettier": "^2.0.5"
+        "yargs-interactive": "^3.0.0"
     },
     "devDependencies": {
         "eslint": "^6.8.0",
