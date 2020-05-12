@@ -65,3 +65,65 @@ content
 ```
 
 You can reference the [acme sample project](https://github.com/hoodoo-digital/acme-storybook-sample-project) for details.
+
+## Command line reference
+```bash
+acme-storybook-sample-project git:(master) npx acme --help
+Usage: acme <command> <options>
+
+Commands:
+  acme pull    Pull content from AEM
+  acme create  Create stories from AEM content
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+```bash
+acme-storybook-sample-project git:(master) npx acme pull --help
+acme pull
+
+Pull content from AEM
+
+Options:
+  --help             Show help                                         [boolean]
+  --version          Show version number                               [boolean]
+  --destination, -d  Destination directory for AEM assets
+                                                [string] [default: "aem-assets"]
+  --config           Path to JSON config file                         [required]
+```
+```bash
+acme-storybook-sample-project git:(master) npx acme create --help
+acme create
+
+Create stories from AEM content
+
+Options:
+  --help        Show help                                              [boolean]
+  --version     Show version number                                    [boolean]
+  --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
+```
+
+## Generated assets
+
+Running `acme pull` "pulls" generated component markup, referenced images, js and css as well as component policies. This command generates the following directories and files under the destination directory provided by the `--destination` or `-d` option.
+
+1. `components`
+   Contains sub-directories for each component which in turn contains html files of each component variation. These files are referenced as templates in the respective stories.
+
+2. `content`
+   This directory contains all image resources referenced in the component variations. The path to the resource will be the same as that used in the component markup to ensure proper rendering in Storybook.
+
+3. `policies`
+   All component policies are saved here as `json` files. These policies are referenced in the respective component stories to optionally apply any defined style system.
+
+4. `resources`
+   This directory contains the `clientlib-base` js and css files as well as any other resources defined on the page. For example, the sample project references `https://use.fontawesome.com/db86937673.js` to load icons.
+
+`acme create` generates stories for each component variation under the `components` directory of the source directory defined by `--source` or `-s` option. The source directory would be the same as the destination directory in the `pull` command. The following assets are created:
+
+1. `stories`
+   Contains `.stories.js` files for each component. Each file in turn contains individual stories for that component.
+
+2. `.storybook\preview-head.html`
+   This file is purely for any static dependencies to render the components in Storybook correctly. For example, if your component is based on an AEM Core Component, it would depend on the core component js and css files. These dependencies are compiled into `clientlib-base.js` and `clientlib-base.css`. The `preview-head.html` would then contain script and link tags referencing these files downloaded by the `pull` command into the `resources` directory. Any other downloaded resource would also be included in this file.
