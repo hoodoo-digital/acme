@@ -1,7 +1,7 @@
 {
     "username": "admin",
-    "password": "tyleristherockstar",
-    "baseURL": "https://rockstar--author--hoodoo.app.aem.cloud/",
+    "password": "admin",
+    "baseURL": "http://localhost:4502/",
     "storybookContentPath": "/content/bas/storybook-sample-content",
     "componentsContainer": "jcr:content/root/container",
     "policyPath": "/conf/bas/settings/wcm/policies/bas/components"
