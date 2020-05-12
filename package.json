@@ -17,7 +17,7 @@
         "storybook"
     ],
     "author": "Meghashyam Adoni <meghashyam@hoodoo.digital>",
-    "license": "ISC",
+    "license": "Apache-2.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/hoodoo-digital/acme.git"
