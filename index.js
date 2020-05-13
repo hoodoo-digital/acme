@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// To simplify paths in require(...) calls
+const path = require('path')
+require('app-module-path').addPath(path.join(__dirname, 'src'))
+
 const yargs = require('yargs')
 
 // eslint-disable-next-line no-unused-expressions
