@@ -1,0 +1,26 @@
+[
+    {
+        "pointer": "/accordion",
+        "value": {
+            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+            "jcr:createdBy": "admin",
+            "jcr:primaryType": "cq:Page"
+        }
+    },
+    {
+        "pointer": "/breadcrumb",
+        "value": {
+            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+            "jcr:createdBy": "admin",
+            "jcr:primaryType": "cq:Page"
+        }
+    },
+    {
+        "pointer": "/button",
+        "value": {
+            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+            "jcr:createdBy": "admin",
+            "jcr:primaryType": "cq:Page"
+        }
+    }
+]
