@@ -94,16 +94,11 @@ const queryJson = (json, path) => {
     })
 }
 
-const getComponentPaths = (json, containerPath) => {
-    // e.g. /jcr:content/root/container/container
-    const query = containerPath
-        .split('/')
-        .map((item) => {
-            return item.includes(':') ? `['${item}']` : item
-        })
-        .join('.')
+const getComponentPaths = (json, containerPath, containerType) => {
+    // Find all sub-objects of any object with specified "containerType"
+    const query = `*.[?(@["sling:resourceType"] === "${containerType}")].*@object()`
     // console.log(query)
-    return queryJson(json, `$.${query}.*@object()`)
+    return queryJson(json, query)
 }
 
 const getPolicyPaths = (json) => {
@@ -113,11 +108,21 @@ const getPolicyPaths = (json) => {
 // Get all child nodes of type "cq:Page"
 const getPagesJson = (json) => {
     const path = '$[?(@["jcr:primaryType"] === "cq:Page")]'
-    return JSONPath({
+    const result = JSONPath({
         path: path,
         json: json,
         resultType: 'all',
         wrap: false
+    })
+
+    // Return only 'pointer' and 'value' keys
+    return result.map((item) => {
+        return Object.keys(item)
+            .filter((key) => ['pointer', 'value'].includes(key))
+            .reduce((obj, key) => {
+                obj[key] = item[key]
+                return obj
+            }, {})
     })
 }
 

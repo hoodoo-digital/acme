@@ -30,10 +30,9 @@ const questions = [
     },
     {
         type: 'text',
-        name: 'componentsContainer',
-        message:
-            'What is the JCR path to the component variations on each page?',
-        initial: 'jcr:content/root/container'
+        name: 'componentsContainerType',
+        message: 'What is the Sling Resource Type for the component container?',
+        initial: 'core-components-examples/components/demo/component'
     },
     {
         type: 'text',

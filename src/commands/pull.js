@@ -23,7 +23,7 @@ module.exports = {
             credentials: credentials,
             baseURL: argv.baseURL,
             storybookContentPath: argv.storybookContentPath,
-            componentsContainer: argv.componentsContainer,
+            containerType: argv.componentsContainerType,
             assetsDir: argv.destination,
             policyPath: argv.policyPath
         })

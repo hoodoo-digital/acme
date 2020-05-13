@@ -8,7 +8,7 @@ const chalk = require('chalk')
 let getData,
     baseURL,
     storybookContentPath,
-    componentsContainer,
+    containerType,
     assetsDir,
     policiesPath
 
@@ -16,7 +16,7 @@ const init = (config) => {
     getData = core.getData.bind(null, config.credentials)
     baseURL = config.baseURL
     storybookContentPath = baseURL + config.storybookContentPath
-    componentsContainer = config.componentsContainer
+    containerType = config.containerType
     assetsDir = config.assetsDir
     policiesPath = config.policyPath
 }
@@ -63,7 +63,7 @@ const getComponentTemplates = async (json) => {
     log(`Retrieving states from ${componentLogMsg} component page`)
     const componentContent = `${storybookContentPath}/${component}`
     const componentDir = `${assetsDir}/components/${component}`
-    const paths = core.getComponentPaths(json.value, componentsContainer)
+    const paths = core.getComponentPaths(json.value, containerType)
     // Assuming every even component is the title
     const titlePaths = paths.filter((p, ind) => ind % 2 === 0)
     const componentPaths = paths.filter((p, ind) => ind % 2 === 1)
