@@ -20,8 +20,10 @@ const execOptions = {
 const createStories = async (assetsPath) => {
     const componentsPath = path.join(assetsPath, 'components')
     // Path relative to assetsPath
-    const policiesRelPath = path.sep + 'policies'
-    const componentsRelPath = path.sep + 'components'
+    const policiesRelPath =
+        '..' + path.sep + assetsPath + path.sep + 'policies'
+    const componentsRelPath =
+        '..' + path.sep + assetsPath + path.sep + 'components'
     const components = await fs.promises.readdir(componentsPath, {
         withFileTypes: true
     })
@@ -95,7 +97,13 @@ const generatePreviewJS = async (assetsPath) => {
         withFileTypes: true
     })
     const resourcesRelPath = resources.map((resource) => {
-        return path.join('../', assetsPath, 'resources', resource.name)
+        return path.join(
+            '..',
+            +path.sep,
+            assetsPath,
+            'resources',
+            resource.name
+        )
     })
     log('Generating preview.js file')
     await execa(
