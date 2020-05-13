@@ -99,7 +99,7 @@ const generatePreviewJS = async (assetsPath) => {
     const resourcesRelPath = resources.map((resource) => {
         return path.join(
             '..',
-            +path.sep,
+            path.sep,
             assetsPath,
             'resources',
             resource.name
