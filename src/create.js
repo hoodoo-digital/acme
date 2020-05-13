@@ -89,15 +89,15 @@ const createStories = async (assetsPath) => {
     }
 }
 
-const generatePreviewHeadHtml = async (assetsPath) => {
+const generatePreviewJS = async (assetsPath) => {
     const resourcesPath = path.join(assetsPath, 'resources')
     const resources = await fs.promises.readdir(resourcesPath, {
         withFileTypes: true
     })
     const resourcesRelPath = resources.map((resource) => {
-        return path.sep + path.join('resources', resource.name)
+        return path.join('../', assetsPath, 'resources', resource.name)
     })
-    log('Generating preview-head.html file')
+    log('Generating preview.js file')
     await execa(
         'npx',
         [
@@ -114,4 +114,4 @@ const generatePreviewHeadHtml = async (assetsPath) => {
 
 // createStories(argv.path).catch(console.error)
 exports.createStories = createStories
-exports.generatePreviewHeadHtml = generatePreviewHeadHtml
+exports.generatePreviewJS = generatePreviewJS
