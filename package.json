@@ -23,6 +23,7 @@
         "url": "https://github.com/hoodoo-digital/acme.git"
     },
     "dependencies": {
+        "app-module-path": "^2.2.0",
         "camelcase": "^6.0.0",
         "chalk": "^4.0.0",
         "cheerio": "^1.0.0-rc.3",

@@ -1,4 +1,4 @@
-const { createStories, generatePreviewHeadHtml } = require('../create')
+const { createStories, generatePreviewHeadHtml } = require('create')
 
 module.exports = {
     command: 'create',

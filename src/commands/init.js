@@ -1,7 +1,7 @@
 const prompts = require('prompts')
 const log = require('debug')('acme:init')
 
-const { writeToFile } = require('../utils')
+const { writeToFile } = require('utils')
 
 const questions = [
     {
