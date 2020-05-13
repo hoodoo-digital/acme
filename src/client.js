@@ -198,8 +198,6 @@ const getPolicies = async () => {
 }
 
 exports.getAllComponents = getAllComponents
-exports.getComponentPages = getComponentPages
-exports.getComponentTemplates = getComponentTemplates
 exports.getResources = getResources
 exports.getPolicies = getPolicies
 exports.init = init
