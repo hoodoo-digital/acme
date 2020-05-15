@@ -2,9 +2,9 @@
     "username": "admin",
     "password": "admin",
     "baseURL": "http://localhost:4502",
-    "storybookContentPath": "/content/core-components-examples/library",
-    "componentsContainerPath": "/jcr:content/root/responsivegrid",
+    "componentsContentPath": "/content/core-components-examples/library",
+    "pageContentContainerPath": "/jcr:content/root/responsivegrid",
     "componentsContainerType": "core-components-examples/components/demo/component",
-    "policyPath": "/conf/bas/settings/wcm/policies/bas/components",
-    "titleResourceType": "core/wcm/components/title/v2/title"
+    "titleResourceType": "core/wcm/components/title/v2/title",
+    "policyPath": "/conf/core-components-examples/settings/wcm/policies/core-components-examples/components"
 }
