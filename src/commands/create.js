@@ -1,5 +1,4 @@
-const { createStories, generatePreviewHeadHtml } = require('create')
-
+const { createStories, generatePreviewJS } = require('create')
 module.exports = {
     command: 'create',
     describe: 'Create stories from AEM content',
@@ -13,6 +12,6 @@ module.exports = {
     },
     handler: (argv) => {
         createStories(argv.source)
-        generatePreviewHeadHtml(argv.source)
+        generatePreviewJS(argv.source)
     }
 }

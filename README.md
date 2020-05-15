@@ -118,12 +118,12 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
    All component policies are saved here as `json` files. These policies are referenced in the respective component stories to optionally apply any defined style system.
 
 4. `resources`
-   This directory contains the `clientlib-base` js and css files as well as any other resources defined on the page. For example, the sample project references `https://use.fontawesome.com/db86937673.js` to load icons.
+   This directory contains the `clientlib-base` js and css which includes the AEM Core Component client libraries as well as AEM Grid. Any other resources defined on the page are also included. For example, the sample project references `https://use.fontawesome.com/db86937673.js` to load icons.
 
 `acme create` generates stories for each component variation under the `components` directory of the source directory defined by `--source` or `-s` option. The source directory would be the same as the destination directory in the `pull` command. The following assets are created:
 
 1. `stories`
    Contains `.stories.js` files for each component. Each file in turn contains individual stories for that component.
 
-2. `.storybook\preview-head.html`
-   This file is purely for any static dependencies to render the components in Storybook correctly. For example, if your component is based on an AEM Core Component, it would depend on the core component js and css files. These dependencies are compiled into `clientlib-base.js` and `clientlib-base.css`. The `preview-head.html` would then contain script and link tags referencing these files downloaded by the `pull` command into the `resources` directory. Any other downloaded resource would also be included in this file.
+2. `.storybook/preview.js`
+   This file imports the assets added to the `resources` directory as well as the entry point to the webpack application at `/src/main/webpack/site/main.ts`--this enables storybook to render the components with the default CSS and JavaScript from the AEM Core Components along with your own custom CSS and JavaScript.

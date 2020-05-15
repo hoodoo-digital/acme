@@ -12,8 +12,10 @@ const fs = require('fs')
 const createStories = async (assetsPath) => {
     const componentsPath = path.join(assetsPath, 'components')
     // Path relative to assetsPath
-    const policiesRelPath = path.sep + 'policies'
-    const componentsRelPath = path.sep + 'components'
+    const policiesRelPath =
+        '..' + path.sep + assetsPath + path.sep + 'policies'
+    const componentsRelPath =
+        '..' + path.sep + assetsPath + path.sep + 'components'
     const components = await fs.promises.readdir(componentsPath, {
         withFileTypes: true
     })
@@ -63,15 +65,22 @@ const createStories = async (assetsPath) => {
     }
 }
 
-const generatePreviewHeadHtml = async (assetsPath) => {
+const generatePreviewJS = async (assetsPath) => {
     const resourcesPath = path.join(assetsPath, 'resources')
     const resources = await fs.promises.readdir(resourcesPath, {
         withFileTypes: true
     })
     const resourcesRelPath = resources.map((resource) => {
-        return path.sep + path.join('resources', resource.name)
+        return path.join(
+            '..',
+            path.sep,
+            assetsPath,
+            'resources',
+            resource.name
+        )
     })
-    log('Generating preview-head.html file')
+
+    log('Generating preview.js file')
     generator.run('preview', null, {
         resourceList: resourcesRelPath.join()
     })
@@ -79,4 +88,4 @@ const generatePreviewHeadHtml = async (assetsPath) => {
 
 // createStories(argv.path).catch(console.error)
 exports.createStories = createStories
-exports.generatePreviewHeadHtml = generatePreviewHeadHtml
+exports.generatePreviewJS = generatePreviewJS
