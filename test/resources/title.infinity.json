@@ -1,0 +1,423 @@
+{
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Thu Jan 16 2020 10:20:15 GMT-0800",
+    "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Title",
+        "cq:template": "/conf/core-components-examples/settings/wcm/templates/content-page",
+        "jcr:created": "Thu Jan 16 2020 10:20:15 GMT-0800",
+        "cq:lastModified": "Wed Jan 16 2019 13:36:38 GMT+0100",
+        "jcr:description": "Display a page heading",
+        "cq:tags": [],
+        "sling:resourceType": "core-components-examples/components/page",
+        "cq:lastModifiedBy": "admin",
+        "root": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "text_1740702241": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Feb 15 2019 19:05:53 GMT+0100",
+                    "text": "<h1>Title<sub>v2</sub></h1>\n",
+                    "jcr:lastModified": "Fri Feb 15 2019 19:09:39 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1644862132301"]
+                },
+                "text": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:11:23 GMT+0100",
+                    "text": "<p>Title can be used to create headings for a page or page sections.</p>\n",
+                    "jcr:lastModified": "Wed Jan 16 2019 13:36:38 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1544762734201"]
+                },
+                "teaser": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Technical Documentation",
+                    "fileReference": "/content/dam/core-components-examples/library/github-logo.svg",
+                    "actionsEnabled": "false",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Feb 14 2019 16:41:54 GMT+0100",
+                    "titleFromPage": "false",
+                    "linkURL": "https://www.adobe.com/go/aem_cmp_tech_title_v2",
+                    "jcr:description": "<p>GitHub</p>\r\n",
+                    "jcr:lastModified": "Thu Feb 14 2019 16:49:57 GMT+0100",
+                    "descriptionFromPage": "false",
+                    "sling:resourceType": "core/wcm/components/teaser/v1/teaser",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1550165685463"]
+                },
+                "teaser_556024830": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Using Core Components",
+                    "fileReference": "/content/dam/core-components-examples/library/adobe-logo.svg",
+                    "actionsEnabled": "false",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Feb 14 2019 16:41:59 GMT+0100",
+                    "titleFromPage": "false",
+                    "linkURL": "https://www.adobe.com/go/aem_cmp_title_v2",
+                    "jcr:description": "<p>Adobe Help Center</p>\r\n",
+                    "jcr:lastModified": "Thu Feb 14 2019 17:47:53 GMT+0100",
+                    "descriptionFromPage": "false",
+                    "sling:resourceType": "core/wcm/components/teaser/v1/teaser",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1550165685463"]
+                },
+                "title_865328580": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Examples",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:23 GMT+0100",
+                    "type": "h2",
+                    "jcr:lastModified": "Thu Dec 06 2018 19:23:25 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759664489"]
+                },
+                "title_290384408": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Standard",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:49:20 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_1337506761": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Default title without any configuration. The title is taken from the current page.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:49:23 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:50:49 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:50:49 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "title": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:50:54 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:50:54 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/title/v2/title"
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_290381000": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Title Text",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:49:32 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_1337508375": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Alternative title texts can be provided rather than the default of taking the title from the current page.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:49:46 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_1448137506": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:50:59 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:50:59 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "title": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:title": "Lorem Ipsum",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:51:03 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:53:27 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/title/v2/title"
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_290386472": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Heading Type",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:49:58 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_1337502846": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>The heading type can be configured (H1-H6).</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:50:01 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_1448137580": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:05:47 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:05:47 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "title_248225561": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:title": "Heading 3",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:52:17 GMT+0100",
+                            "type": "h3",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:52:17 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/title/v2/title"
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_290383811": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Linked",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:50:11 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_1337504482": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Titles can be linked&nbsp;to internal relative AEM resources, external absolute URLs or&nbsp;page anchors.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:50:14 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_1934630368": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:51:30 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:51:30 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "title": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:51:35 GMT+0100",
+                            "type": "h1",
+                            "linkURL": "/content/core-components-examples/library/title",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:51:52 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/title/v2/title"
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "jcr:primaryType": "nt:unstructured",
+            "file": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Thu Jan 16 2020 10:20:15 GMT-0800",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:mixinTypes": ["dam:Thumbnails"],
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "image/png",
+                    "jcr:lastModified": "Thu Jan 16 2020 10:20:15 GMT-0800",
+                    ":jcr:data": 3849,
+                    "jcr:uuid": "c1c8b75c-cdc2-4946-898d-0c054b96461d",
+                    "dam:thumbnails": {
+                        "jcr:primaryType": "nt:folder",
+                        "jcr:createdBy": "admin",
+                        "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                        "dam:thumbnail_480.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 2936,
+                                "jcr:uuid": "405be71d-e8e9-467e-b407-24d62c3eb861"
+                            }
+                        },
+                        "dam:thumbnail_319.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 2655,
+                                "jcr:uuid": "8f805426-32ad-48a7-9518-9ec93f3903db"
+                            }
+                        },
+                        "dam:thumbnail_300.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 1984,
+                                "jcr:uuid": "e6b050bb-f84f-42a6-98fd-5aff8710a1ba"
+                            }
+                        },
+                        "dam:thumbnail_48.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 300,
+                                "jcr:uuid": "da127556-73dc-4e70-9b53-717f443a432d"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

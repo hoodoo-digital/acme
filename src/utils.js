@@ -2,11 +2,11 @@ const fs = require('fs')
 const fsPromises = fs.promises
 const prettier = require('prettier')
 
-const getContentUrl = (path) => {
+const getHtmlPath = (path) => {
     return path + '.html?wcmmode=disabled'
 }
 
-const getJsonUrl = (path) => {
+const getJsonPath = (path) => {
     return path + '.infinity.json'
 }
 
@@ -26,7 +26,7 @@ const tidy = (html) => {
     return prettier.format(html, { parser: 'html' })
 }
 
-exports.getContentUrl = getContentUrl
-exports.getJsonUrl = getJsonUrl
+exports.getHtmlPath = getHtmlPath
+exports.getJsonPath = getJsonPath
 exports.writeToFile = writeToFile
 exports.tidy = tidy

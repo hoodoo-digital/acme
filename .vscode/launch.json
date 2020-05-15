@@ -8,8 +8,12 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${file}",
-            "skipFiles": ["<node_internals>/**"]
+            "program": "${workspaceFolder}/index.js",
+            "skipFiles": ["<node_internals>/**"],
+            "args": ["pull", "--config", "test/resources/settings.json"],
+            "env": {
+                "DEBUG": "acme:*"
+            }
         },
         {
             "name": "npm debug tests",

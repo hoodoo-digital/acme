@@ -36,6 +36,12 @@ const questions = [
     },
     {
         type: 'text',
+        name: 'titleResourceType',
+        message: 'What is the Sling Resource Type for the title component?',
+        initial: 'core/wcm/components/title/v2/title'
+    },
+    {
+        type: 'text',
         name: 'policyPath',
         message: 'What is the path to the component policies?',
         initial: '/conf/<my-site>/settings/wcm/policies/<my-site>/components'

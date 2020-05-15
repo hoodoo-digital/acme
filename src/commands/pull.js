@@ -22,13 +22,13 @@ module.exports = {
         client.init({
             credentials: credentials,
             baseURL: argv.baseURL,
-            storybookContentPath: argv.storybookContentPath,
+            containerPath: argv.componentsContainerPath,
             containerType: argv.componentsContainerType,
-            assetsDir: argv.destination,
-            policyPath: argv.policyPath
+            titleResourceType: argv.titleResourceType,
+            assetsDir: argv.destination
         })
-        client.getAllComponents()
-        client.getPolicies()
-        client.getResources()
+        client.getAllComponents(argv.storybookContentPath)
+        client.getPolicies(argv.policyPath)
+        client.getResources(argv.storybookContentPath)
     }
 }

@@ -13,15 +13,20 @@ const getTitle = (html) => {
     return $('title').text()
 }
 
-const getData = async (creds, url) => {
+const getData = async (creds, baseUrl, path) => {
     const buffer = Buffer.from(creds)
     const encodedCreds = buffer.toString('base64')
     try {
-        const response = await fetch(url, {
+        const response = await fetch(baseUrl + path, {
             headers: {
                 Authorization: `Basic ${encodedCreds}`
             }
         })
+        // Multiple Choices
+        if (response.status === 300) {
+            const choices = await getJson(response)
+            return getData(creds, baseUrl, choices.shift())
+        }
         if (!response.ok) {
             throw new Error(await getHtml(response).then(getTitle))
         }
@@ -59,7 +64,7 @@ const getTitleText = (html) => {
     return $('.cmp-title__text').text()
 }
 
-const parseHtml = (html) => {
+const getResourcePaths = (html) => {
     const $ = cheerio.load(html)
     const resourceTypes = [
         {
@@ -85,45 +90,47 @@ const parseHtml = (html) => {
     return resources
 }
 
-const queryJson = (json, path) => {
+const getPointers = (json, path) => {
     return JSONPath({
         path: path,
         json: json,
-        resultType: 'pointer',
-        wrap: false
+        resultType: 'pointer'
     })
 }
 
-const getComponentPaths = (json, containerPath, containerType) => {
+const getTitles = (json, resourceType, containerPath, count) => {
+    // e.g. /jcr:content/root/container/container
+    const path = containerPath
+        .split('/')
+        .map((item) => {
+            return item.includes(':') ? `'${item}'` : item
+        })
+        .join('.')
+    const query = `$.${path}[?(@['sling:resourceType'] === '${resourceType}' )].'jcr:title'`
+    const result = JSONPath({
+        path: query,
+        json: json,
+        resultType: 'value',
+        wrap: false
+    })
+    return result && result.slice(-count)
+}
+
+const getComponentPaths = (json, containerType) => {
     // Find all sub-objects of any object with specified "containerType"
     const query = `*.[?(@["sling:resourceType"] === "${containerType}")].*@object()`
     // console.log(query)
-    return queryJson(json, query)
+    return getPointers(json, query)
 }
 
 const getPolicyPaths = (json) => {
-    return queryJson(json, '$.*@object()')
+    return getPointers(json, '$.*@object()')
 }
 
 // Get all child nodes of type "cq:Page"
-const getPagesJson = (json) => {
+const getPagePaths = (json) => {
     const path = '$[?(@["jcr:primaryType"] === "cq:Page")]'
-    const result = JSONPath({
-        path: path,
-        json: json,
-        resultType: 'all',
-        wrap: false
-    })
-
-    // Return only 'pointer' and 'value' keys
-    return result.map((item) => {
-        return Object.keys(item)
-            .filter((key) => ['pointer', 'value'].includes(key))
-            .reduce((obj, key) => {
-                obj[key] = item[key]
-                return obj
-            }, {})
-    })
+    return getPointers(json, path)
 }
 
 exports.getData = getData
@@ -131,7 +138,8 @@ exports.writeToFile = writeToFile
 exports.getComponentPaths = getComponentPaths
 exports.getHtml = getHtml
 exports.getJson = getJson
-exports.parseHtml = parseHtml
+exports.getResourcePaths = getResourcePaths
 exports.getTitleText = getTitleText
 exports.getPolicyPaths = getPolicyPaths
-exports.getPagesJson = getPagesJson
+exports.getPagePaths = getPagePaths
+exports.getTitles = getTitles

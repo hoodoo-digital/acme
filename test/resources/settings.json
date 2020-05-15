@@ -1,8 +1,10 @@
 {
     "username": "admin",
     "password": "admin",
-    "baseURL": "http://localhost:4502/",
-    "storybookContentPath": "/content/bas/storybook-sample-content",
-    "componentsContainer": "jcr:content/root/container",
-    "policyPath": "/conf/bas/settings/wcm/policies/bas/components"
+    "baseURL": "http://localhost:4502",
+    "storybookContentPath": "/content/core-components-examples/library",
+    "componentsContainerPath": "/jcr:content/root/responsivegrid",
+    "componentsContainerType": "core-components-examples/components/demo/component",
+    "policyPath": "/conf/bas/settings/wcm/policies/bas/components",
+    "titleResourceType": "core/wcm/components/title/v2/title"
 }
