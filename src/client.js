@@ -27,13 +27,12 @@ const getRenderedComponent = async (
     componentLogMsg,
     componentDir
 ) => {
-    const extension = path.extname(componentContentPath)
     log(
         `Saving template file for ${chalk.yellow.bold(
             title
         )} state of ${componentLogMsg} component`
     )
-    const filename = title.replace(/\s+/g, '-') + extension
+    const filename = title.replace(/\s+/g, '-') + '.html'
     const writeToFile = utils.writeToFile.bind(
         null,
         `${componentDir}/${filename}`
