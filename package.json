@@ -30,6 +30,7 @@
         "cheerio": "^1.0.0-rc.3",
         "content-type": "^1.0.4",
         "core-js": "^3.6.5",
+        "css": "^2.2.4",
         "debug": "^4.1.1",
         "execa": "^4.0.0",
         "humanize-string": "^2.1.0",

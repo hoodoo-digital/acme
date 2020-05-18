@@ -64,4 +64,36 @@ describe('core', () => {
             ).toEqual(expect.arrayContaining(expected))
         })
     })
+
+    describe('getFontUrls', () => {
+        test('returns urls for font files', () => {
+            const css = `
+            .fa,
+            .fas {
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900; }
+
+            @font-face {
+                font-family: 'Source Code Pro';
+                font-style: normal;
+                font-weight: 400;
+                src: url('clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.eot'); /* IE9 Compat Modes */
+                src: local('Source Code Pro Regular'), local('SourceCodePro-Regular'),
+                url("clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.eot?#iefix") format('embedded-opentype'), /* IE6-IE8 */
+                url('clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+                url('clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+                url('clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+                url('clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.svg#SourceCodePro') format('svg'); /* Legacy iOS */
+            }`
+            const expected = [
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.eot',
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.eot',
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.woff2',
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.woff',
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.ttf',
+                'clientlib-fonts/resources/vendor/adobe-fonts/source-code-pro-v11-latin-regular.svg'
+            ]
+            expect(core.getFontUrls(css)).toStrictEqual(expected)
+        })
+    })
 })

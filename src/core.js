@@ -7,6 +7,7 @@ const util = require('util')
 const stream = require('stream')
 const streamPipeline = util.promisify(stream.pipeline)
 const fs = require('fs')
+const css = require('css')
 
 const getTitle = (html) => {
     const $ = cheerio.load(html)
@@ -133,6 +134,26 @@ const getPagePaths = (json) => {
     return getPointers(json, path)
 }
 
+const getFontUrls = (cssString) => {
+    const cssObj = css.parse(cssString)
+    const path =
+        '$[?(@.type === "font-face")].declarations[?(@.property === "src")].value'
+    const srcArr = JSONPath({
+        path: path,
+        json: cssObj.stylesheet.rules,
+        resultType: 'value'
+    })
+    const result = []
+    for (const src of srcArr) {
+        const matches = src.matchAll(/url\(('|")(?<url>.*?)('|")\)/g)
+        for (const match of matches) {
+            // Strip any query string in url
+            const cleanUrl = match.groups.url.replace(/(\?|#).*$/, '')
+            result.push(cleanUrl)
+        }
+    }
+    return result
+}
 exports.getData = getData
 exports.writeToFile = writeToFile
 exports.getComponentPaths = getComponentPaths
@@ -143,3 +164,4 @@ exports.getTitleText = getTitleText
 exports.getPolicyPaths = getPolicyPaths
 exports.getPagePaths = getPagePaths
 exports.getTitles = getTitles
+exports.getFontUrls = getFontUrls

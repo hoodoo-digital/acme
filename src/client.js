@@ -137,11 +137,39 @@ const getResources = async (contentPath) => {
                 })
                 .forEach((resourcePath) => {
                     const filename = path.basename(resourcePath)
-                    getData(resourcePath).then((response) => {
+                    const resourceDir = path.dirname(resourcePath)
+                    getData(resourcePath).then(async (response) => {
+                        const clone = response.clone()
                         core.writeToFile(
                             response,
                             path.join(targetPath, filename)
                         )
+                        if (
+                            clone.headers
+                                .get('content-type')
+                                .includes('text/css')
+                        ) {
+                            const cssCode = await clone.text()
+                            const fontUrls = core.getFontUrls(cssCode)
+                            fontUrls.forEach((fontPath) => {
+                                const fontUrl = path.join(
+                                    resourceDir,
+                                    fontPath
+                                )
+                                const filename = path.basename(fontPath)
+                                getData(fontUrl).then((response) => {
+                                    const fontDir = path.join(
+                                        targetPath,
+                                        path.dirname(fontPath)
+                                    )
+                                    mkdirp.sync(fontDir)
+                                    core.writeToFile(
+                                        response,
+                                        path.join(fontDir, filename)
+                                    )
+                                })
+                            })
+                        }
                     })
                 })
         })
