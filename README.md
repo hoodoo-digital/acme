@@ -127,3 +127,63 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
 
 2. `.storybook/preview.js`
    This file imports the assets added to the `resources` directory as well as the entry point to the webpack application at `/src/main/webpack/site/main.ts`--this enables storybook to render the components with the default CSS and JavaScript from the AEM Core Components along with your own custom CSS and JavaScript.
+
+## Example setup
+
+Steps to get up and running with `acme` on a fresh AEM archetype project.
+
+1. From the `ui.frontend` directory run the following commands:
+    ```
+    npm install @storybook/aem -D
+    npm install storybook-aem-style-system -D
+    npm install storybook-addon-xd-designs -D
+    npm install @hoodoo/acme -D
+    ```
+
+2. Add a `.storybook` directory inside of `ui.frontend` and add a `main.js` file inside of that. Below is an example `main.js` that will work with the default archetype setup, however you may need to alter this based on your project needs. Check out the Storybook docs for information on [custom webpack configs](https://storybook.js.org/docs/configurations/custom-webpack-config/).
+    ```
+    const path = require('path');
+
+    module.exports = {
+        stories: ['../stories/*.stories.js'],
+        addons: [
+          'storybook-addon-xd-designs/register',
+          'storybook-aem-style-system/register'
+        ],
+        webpackFinal: async (config, { configType }) => {
+
+          config.module.rules.push({
+            test: /\.tsx?$/,
+            exclude: [
+                /(node_modules)/,
+                /stories/
+            ],
+            use: ['ts-loader', 'webpack-import-glob-loader'],
+            include: path.resolve(__dirname, '../'),
+          });
+          config.module.rules.push({
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader', 'webpack-import-glob-loader'],
+            include: path.resolve(__dirname, '../'),
+          });
+
+          return config;
+        },
+    };
+    ```
+
+3. Inside your `package.json` add the following commands to the `scripts` section
+
+    ```
+    "storybook": "start-storybook -s ./src/main/webpack/static,./ -p 9001",
+    "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets"
+    ```
+
+4. Add an `acme.settings.json` file inside the `ui.frontend` directory as described in the "Configuration File" section of this document.
+
+5. Ensure the AEM Core Component packages and sample content is installed on the instance specified in your `acme.settings.json`. The sample content installs to this location: `/content/core-components-examples/library`.
+
+With those steps complete you can now run `npm run acme` to pull the component markup from your AEM instance and automatically generate Storybook stories inside your project.
+
+Once `acme` has finished run `npm run storybook`.
+
