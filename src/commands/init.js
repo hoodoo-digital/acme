@@ -72,12 +72,7 @@ module.exports = {
         })
     },
     handler: async (argv) => {
-        const onSubmit = (prompt, answer) => {
-            if (prompt.name === 'site') {
-                log()
-            }
-        }
-        const response = await prompts(questions, { onSubmit })
+        const response = await prompts(questions)
         const settings = Object.assign(response, defaults)
         writeToFile(argv.file, JSON.stringify(settings, null, 4) + os.EOL)
         log(`Generated "${argv.file}"`)
