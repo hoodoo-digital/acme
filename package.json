@@ -1,6 +1,9 @@
 {
     "name": "@hoodoo/acme",
     "version": "1.1.0",
+    "engines": {
+        "node": ">=11.14.0"
+    },
     "description": "A tool to generate Storybook stories from AEM content.",
     "main": "index.js",
     "bin": {
@@ -40,6 +43,7 @@
         "node-fetch": "^2.6.0",
         "prettier": "^2.0.5",
         "prompts": "^2.3.2",
+        "xml2js": "^0.4.23",
         "yargs": "^15.3.1",
         "yargs-interactive": "^3.0.0"
     },

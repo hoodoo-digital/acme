@@ -6,6 +6,7 @@ env:
 extends:
   - standard
   - plugin:jest/recommended
+  - plugin:node/recommended
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -17,3 +18,7 @@ rules:
     indent:
         - error
         - 4
+    node/no-missing-require:
+        - error
+        - resolvePaths:
+            - src
