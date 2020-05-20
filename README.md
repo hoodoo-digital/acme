@@ -30,7 +30,7 @@ This is the format for the expected config file. As of now, all fields are requi
     "username": "admin",
     "password": "admin",
     "baseURL": "https://localhost:4502",
-    "homePage": "/content/<project appId>/us/en"
+    "homePage": "/content/<project appId>/us/en",
     "policyPath": "/conf/<project appId>/settings/wcm/policies/<project appId>/components",
     "componentsContentPath": "/content/core-components-examples/library",
     "pageContentContainerPath": "/jcr:content/root/responsivegrid",
