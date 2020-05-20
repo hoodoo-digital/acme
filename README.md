@@ -125,11 +125,7 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
 1. From the `ui.frontend` directory run the following commands:
     ```
     npm install @storybook/aem -D
-    npm install storybook-aem-style-system -D
-    npm install storybook-addon-xd-designs -D
-    npm install @hoodoo/acme -D
-    npm install hygen -D
-    npm install @babel/preset-typescript -D
+    npm install -D storybook-aem-style-system storybook-addon-xd-designs @hoodoo/acme hygen @babel/preset-typescript
     ```
 
 2. Add a `.storybook` directory inside of `ui.frontend` and add a `main.js` file inside of that. Below is an example `main.js` that will work with the default archetype setup, however you may need to alter this based on your project needs. Check out the Storybook docs for information on [custom webpack configs](https://storybook.js.org/docs/configurations/custom-webpack-config/).
@@ -178,4 +174,3 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
 With those steps complete you can now run `npm run acme` to pull the component markup from your AEM instance and automatically generate Storybook stories inside your project.
 
 Once `acme` has finished run `npm run storybook`.
-
