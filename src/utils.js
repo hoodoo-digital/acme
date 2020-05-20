@@ -3,7 +3,7 @@ const fsPromises = fs.promises
 const prettier = require('prettier')
 
 const getHtmlPath = (path) => {
-    return path + '.html?wcmmode=disable'
+    return path + '.html?wcmmode=disabled'
 }
 
 const getJsonPath = (path) => {
