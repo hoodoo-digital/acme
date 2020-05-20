@@ -6,6 +6,22 @@ const fsPromises = require('fs').promises
 
 const { writeToFile } = require('utils')
 
+const getSiteName = async () => {
+    return fsPromises.readFile('pom.xml').then(
+        (data) => {
+            return xml2js
+                .parseStringPromise(data)
+                .then((obj) => obj.project.parent[0].artifactId[0])
+        },
+        (err) => {
+            log(
+                `Could not find ${err.path}... you will have to manually enter the policy path.`
+            )
+            return '<your-site>'
+        }
+    )
+}
+
 const questions = [
     {
         type: 'text',
@@ -27,28 +43,24 @@ const questions = [
     },
     {
         type: 'text',
+        name: 'homePage',
+        message: 'What is the path to the home page of your site?',
+        initial: '/us/en',
+        format: async (val) => {
+            return getSiteName().then(
+                (siteName) => `/content/${siteName}${val}`
+            )
+        }
+    },
+    {
+        type: 'text',
         name: 'policyPath',
         message: 'What is the path to the component policies?',
         initial: async () => {
-            return fsPromises
-                .readFile('pom.xml')
-                .then(
-                    (data) => {
-                        return xml2js
-                            .parseStringPromise(data)
-                            .then((obj) => obj.project.parent[0].artifactId[0])
-                    },
-                    (err) => {
-                        log(
-                            `Could not find ${err.path}... you will have to manually enter the policy path.`
-                        )
-                        return '<your-site>'
-                    }
-                )
-                .then(
-                    (siteName) =>
-                        `/conf/${siteName}/settings/wcm/policies/${siteName}/components`
-                )
+            return getSiteName().then(
+                (siteName) =>
+                    `/conf/${siteName}/settings/wcm/policies/${siteName}/components`
+            )
         }
     }
 ]

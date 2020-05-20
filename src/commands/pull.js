@@ -29,6 +29,6 @@ module.exports = {
         })
         client.getAllComponents(argv.componentsContentPath)
         client.getPolicies(argv.policyPath)
-        client.getResources(argv.componentsContentPath)
+        client.getResources(argv.homePage)
     }
 }
