@@ -72,6 +72,18 @@ Options:
   --version  Show version number                                       [boolean]
 ```
 ```bash
+acme init [file]
+
+Generate the configuration file
+
+Positionals:
+  file  Configuration file path         [string] [default: "acme.settings.json"]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+```bash
 acme pull
 
 Pull content from AEM
@@ -80,7 +92,7 @@ Options:
   --help             Show help                                         [boolean]
   --version          Show version number                               [boolean]
   --destination, -d  Destination directory for AEM assets
-                                                [string] [default: "storybook-assets"]
+                                                [string] [default: "aem-assets"]
   --config           Path to JSON config file                         [required]
 ```
 ```bash
@@ -91,7 +103,7 @@ Create stories from AEM content
 Options:
   --help        Show help                                              [boolean]
   --version     Show version number                                    [boolean]
-  --source, -s  Path to downloaded AEM assets   [string] [default: "storybook-assets"]
+  --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
 ```
 
 ## Generated Assets
