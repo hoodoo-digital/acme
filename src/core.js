@@ -3,9 +3,6 @@ const fetch = require('node-fetch')
 // const contentType = require('content-type');
 const cheerio = require('cheerio')
 const { JSONPath } = require('jsonpath-plus')
-const util = require('util')
-const stream = require('stream')
-const streamPipeline = util.promisify(stream.pipeline)
 const fs = require('fs')
 const css = require('css')
 
@@ -47,7 +44,8 @@ const getJson = async (res) => {
 }
 
 const writeToFile = async (res, filePath) => {
-    return streamPipeline(res.body, fs.createWriteStream('./' + filePath))
+    const dest = fs.createWriteStream(filePath)
+    return await res.body.pipe(dest)
 }
 
 // const parseHtmlFile = file => {
