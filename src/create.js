@@ -27,8 +27,8 @@ const readdir = async (path) => {
 const createStories = async (assetsPath) => {
     const componentsPath = path.join(assetsPath, 'components')
     // Path relative to assetsPath
-    const policiesRelPath = path.join('..', assetsPath, 'policies')
-    const componentsRelPath = path.join('..', componentsPath)
+    const policiesRelPath = path.join(path.sep, 'policies')
+    const componentsRelPath = path.join(path.sep, 'components')
     const components = await readdir(componentsPath)
 
     for (const component of components) {
