@@ -24,7 +24,7 @@ export DEBUG=acme:*
 
 ## Configuration File
 
-This is the format for the expected config file. As of now, all fields are required. Convention is to name this file `acme.settings.json`. You can use the `acme init` command to trigger a prompt that will automatically create this file.
+This is the format for the expected config file. As of now, all fields are required. You can use the `acme init` command to trigger a prompt that will automatically create the config file, which is named `acme.settings.json` by default.
 ```json
 {
     "username": "admin",
@@ -56,21 +56,22 @@ This is the format for the expected config file. As of now, all fields are requi
 
 `acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
 
+Instructions for installing the AEM Core Components can be found here: [AEM WCM Core Components](https://github.com/adobe/aem-core-wcm-components)
+
 ## Command Line Reference
 ```bash
-acme-storybook-sample-project git:(master) npx acme --help
 Usage: acme <command> <options>
 
 Commands:
-  acme pull    Pull content from AEM
-  acme create  Create stories from AEM content
+  acme init [file]  Generate the configuration file
+  acme pull         Pull content from AEM
+  acme create       Create stories from AEM content
 
 Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
 ```
 ```bash
-acme-storybook-sample-project git:(master) npx acme pull --help
 acme pull
 
 Pull content from AEM
@@ -79,11 +80,10 @@ Options:
   --help             Show help                                         [boolean]
   --version          Show version number                               [boolean]
   --destination, -d  Destination directory for AEM assets
-                                                [string] [default: "aem-assets"]
+                                                [string] [default: "storybook-assets"]
   --config           Path to JSON config file                         [required]
 ```
 ```bash
-acme-storybook-sample-project git:(master) npx acme create --help
 acme create
 
 Create stories from AEM content
@@ -91,7 +91,7 @@ Create stories from AEM content
 Options:
   --help        Show help                                              [boolean]
   --version     Show version number                                    [boolean]
-  --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
+  --source, -s  Path to downloaded AEM assets   [string] [default: "storybook-assets"]
 ```
 
 ## Generated Assets
@@ -108,7 +108,7 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
    All component policies are saved here as `json` files. These policies are referenced in the respective component stories to optionally apply any defined style system.
 
 4. `resources`
-   This directory contains the `clientlib-base` js and css which includes the AEM Core Component client libraries as well as AEM Grid. Any other resources defined on the page are also included. For example, the sample project references `https://use.fontawesome.com/db86937673.js` to load icons.
+   This directory contains the `clientlib-base` js and css which includes the AEM Core Component client libraries as well as AEM Grid.
 
 `acme create` generates stories for each component variation under the `components` directory of the source directory defined by `--source` or `-s` option. The source directory would be the same as the destination directory in the `pull` command. The following assets are created:
 
