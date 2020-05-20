@@ -32,7 +32,7 @@ const getRenderedComponent = async (
             title
         )} state of ${componentLogMsg} component`
     )
-    const filename = title.replace(/\s+/g, '-') + '.html'
+    const filename = title.replace(/\W+/g, '-') + '.html'
     const writeToFile = utils.writeToFile.bind(
         null,
         `${componentDir}/${filename}`
