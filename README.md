@@ -24,15 +24,18 @@ export DEBUG=acme:*
 
 ## Configuration file
 
-This is the format for the expected config file. As of now, all fields are required.
+This is the format for the expected config file. As of now, all fields are required. Convention is to name this file `acme.settings.json`. You can use the `acme init` command to trigger a prompt that will automatically create this file.
 ```json
 {
     "username": "admin",
     "password": "admin",
     "baseURL": "https://localhost:4502",
-    "componentsContentPath": "/content/my-site/storybook-sample-content",
-    "componentsContainer": "jcr:content/root/container",
-    "policyPath": "/conf/my-site/settings/wcm/policies/my-site/components"
+    "homePage": "/content/<project appId>/us/en"
+    "policyPath": "/conf/<project appId>/settings/wcm/policies/<project appId>/components",
+    "componentsContentPath": "/content/core-components-examples/library",
+    "pageContentContainerPath": "/jcr:content/root/responsivegrid",
+    "componentsContainerType": "core-components-examples/components/demo/component",
+    "titleResourceType": "core/wcm/components/title/v2/title"
 }
 ```
 
@@ -41,30 +44,17 @@ This is the format for the expected config file. As of now, all fields are requi
 1. `username` - Username for AEM instance
 2. `password` - Password for AEM instance
 3. `baseURL` - Base url for the AEM instance
-4. `componentsContentPath` - Path to the parent page for all component content pages
-5. `componentsContainer` - The JCR parent node for component content on a given page
-6. `policyPath` - The JCR node that contains all component policies
+4. `homePage` - Home page for the site being developed
+5. `policyPath` - The JCR node that contains all component policies
+6. `componentsContentPath` - Path to the parent page for all Core Component example content pages
+7. `pageContentContainerPath` - Used for parsing the HTML of the Core Component example pages
+8. `componentsContainerType` - Component type that contains each example component
+9. `titleResourceType` - `acme` uses the Title component text on the example content pages to name each of the stories
+
 
 ## AEM Content
 
-Each page under `componentsContentPath` represents all the stories for a single component. To allow `acme` to correctly generate stories for each use case from a given page, the page must maintain a specific structure; each component use case must be preceded by a `title` component describing that use case.
-
-For example, if we have two use cases for the `button` component, say "Simple Button" and "Fancy Button", the jcr content would look something like this:
-```
-content
-|--my-site
-    |-- storybook-sample-content
-        |-- button
-            |-- jcr:content
-                |-- root
-                    |-- container
-                        |-- title       // Simple Button
-                        |-- button
-                        |-- title_1     // Fancy Button
-                        |-- button_1
-```
-
-You can reference the [acme sample project](https://github.com/hoodoo-digital/acme-storybook-sample-project) for details.
+`acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
 
 ## Command line reference
 ```bash
@@ -138,6 +128,8 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
     npm install storybook-aem-style-system -D
     npm install storybook-addon-xd-designs -D
     npm install @hoodoo/acme -D
+    npm install hygen -D
+    npm install @babel/preset-typescript -D
     ```
 
 2. Add a `.storybook` directory inside of `ui.frontend` and add a `main.js` file inside of that. Below is an example `main.js` that will work with the default archetype setup, however you may need to alter this based on your project needs. Check out the Storybook docs for information on [custom webpack configs](https://storybook.js.org/docs/configurations/custom-webpack-config/).
@@ -172,14 +164,14 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
     };
     ```
 
-3. Inside your `package.json` add the following commands to the `scripts` section
+3. Run `acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
+
+4. Inside your `package.json` add the following commands to the `scripts` section
 
     ```
-    "storybook": "start-storybook -s ./src/main/webpack/static,./ -p 9001",
+    "storybook": "start-storybook -s ./storybook-assets -p 9001",
     "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets"
     ```
-
-4. Add an `acme.settings.json` file inside the `ui.frontend` directory as described in the "Configuration File" section of this document.
 
 5. Ensure the AEM Core Component packages and sample content is installed on the instance specified in your `acme.settings.json`. The sample content installs to this location: `/content/core-components-examples/library`.
 
