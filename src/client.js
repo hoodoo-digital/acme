@@ -121,6 +121,35 @@ const getContent = async (html) => {
         })
 }
 
+/* const getFonts = async (response, resourceDir, targetPath) => {
+    if (
+        response.headers
+            .get('content-type')
+            .includes('text/css')
+    ) {
+        const cssCode = await response.text()
+        const fontUrls = core.getFontUrls(cssCode)
+        fontUrls.forEach(async (fontPath) => {
+            const fontUrl = path.join(
+                resourceDir,
+                fontPath
+            )
+            const filename = path.basename(fontPath)
+            await getData(fontUrl).then(async (response) => {
+                const fontDir = path.join(
+                    targetPath,
+                    path.dirname(fontPath)
+                )
+                mkdirp.sync(fontDir)
+                await core.writeToFile(
+                    response,
+                    path.join(fontDir, filename)
+                )
+            })
+        })
+    }
+} */
+
 const getResources = async (contentPath) => {
     return getData(utils.getHtmlPath(contentPath))
         .then(core.getHtml)
@@ -128,6 +157,7 @@ const getResources = async (contentPath) => {
             const resourcePaths = core.getResourcePaths(html)
             const targetPath = path.join(assetsDir, 'resources')
             mkdirp.sync(targetPath)
+            const resources = []
             resourcePaths
                 .filter((p) => {
                     // TODO - Define whitelist in config
@@ -135,43 +165,22 @@ const getResources = async (contentPath) => {
                         p.includes(x)
                     )
                 })
-                .forEach((resourcePath) => {
+                .forEach(async (resourcePath) => {
                     const filename = path.basename(resourcePath)
-                    const resourceDir = path.dirname(resourcePath)
-                    getData(resourcePath).then(async (response) => {
-                        const clone = response.clone()
-                        core.writeToFile(
-                            response,
-                            path.join(targetPath, filename)
-                        )
-                        if (
-                            clone.headers
-                                .get('content-type')
-                                .includes('text/css')
-                        ) {
-                            const cssCode = await clone.text()
-                            const fontUrls = core.getFontUrls(cssCode)
-                            fontUrls.forEach((fontPath) => {
-                                const fontUrl = path.join(
-                                    resourceDir,
-                                    fontPath
-                                )
-                                const filename = path.basename(fontPath)
-                                getData(fontUrl).then((response) => {
-                                    const fontDir = path.join(
-                                        targetPath,
-                                        path.dirname(fontPath)
-                                    )
-                                    mkdirp.sync(fontDir)
-                                    core.writeToFile(
-                                        response,
-                                        path.join(fontDir, filename)
-                                    )
-                                })
-                            })
+                    // const resourceDir = path.dirname(resourcePath)
+                    const resource = getData(resourcePath).then(
+                        async (response) => {
+                            // const clone = response.clone()
+                            // getFonts(clone, resourceDir, targetPath)
+                            return core.writeToFile(
+                                response,
+                                path.join(targetPath, filename)
+                            )
                         }
-                    })
+                    )
+                    resources.push(resource)
                 })
+            return Promise.all(resources)
         })
 }
 
