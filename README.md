@@ -22,7 +22,7 @@ or
 export DEBUG=acme:*
 ```
 
-## Configuration file
+## Configuration File
 
 This is the format for the expected config file. As of now, all fields are required. Convention is to name this file `acme.settings.json`. You can use the `acme init` command to trigger a prompt that will automatically create this file.
 ```json
@@ -56,7 +56,7 @@ This is the format for the expected config file. As of now, all fields are requi
 
 `acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
 
-## Command line reference
+## Command Line Reference
 ```bash
 acme-storybook-sample-project git:(master) npx acme --help
 Usage: acme <command> <options>
@@ -94,7 +94,7 @@ Options:
   --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
 ```
 
-## Generated assets
+## Generated Assets
 
 Running `acme pull` "pulls" generated component markup, referenced images, js and css as well as component policies. This command generates the following directories and files under the destination directory provided by the `--destination` or `-d` option.
 
@@ -118,7 +118,7 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
 2. `.storybook/preview.js`
    This file imports the assets added to the `resources` directory as well as the entry point to the webpack application at `/src/main/webpack/site/main.ts`--this enables storybook to render the components with the default CSS and JavaScript from the AEM Core Components along with your own custom CSS and JavaScript.
 
-## Example setup
+## Example Setup
 
 Steps to get up and running with `acme` on a fresh AEM archetype project.
 
