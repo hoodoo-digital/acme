@@ -1,13 +1,10 @@
 ---
-to: .storybook/preview-head.html
+to: .storybook/preview.js
 ---
 <%_
     const resources = resourceList.split(',')
     for (let resource of resources) {
-        if (resource.endsWith('.css')) {
-        _%><link rel="stylesheet" href="<%= resource %>">
-    <%_ } else if (resource.endsWith('.js')) {
-            _%><script src="<%= resource %>"></script>
-    <%_ }
-    }
+        _%>import '<%= resource %>';
+    <%_}
+    _%>import '../src/main/webpack/site/main.ts';<%_
 _%>

@@ -1,4 +1,4 @@
-const client = require('../client')
+const client = require('client')
 
 module.exports = {
     command: 'pull',
@@ -14,7 +14,7 @@ module.exports = {
             .config()
             .demandOption('config')
     },
-    handler: (argv) => {
+    handler: async (argv) => {
         const username = argv.username || 'admin'
         const password = argv.password || 'admin'
         const credentials = username + ':' + password
@@ -22,13 +22,13 @@ module.exports = {
         client.init({
             credentials: credentials,
             baseURL: argv.baseURL,
-            storybookContentPath: argv.storybookContentPath,
-            componentsContainer: argv.componentsContainer,
-            assetsDir: argv.destination,
-            policyPath: argv.policyPath
+            containerPath: argv.pageContentContainerPath,
+            containerType: argv.componentsContainerType,
+            titleResourceType: argv.titleResourceType,
+            assetsDir: argv.destination
         })
-        client.getAllComponents()
-        client.getPolicies()
-        client.getResources()
+        await client.getAllComponents(argv.componentsContentPath)
+        await client.getPolicies(argv.policyPath)
+        await client.getResources(argv.homePage)
     }
 }
