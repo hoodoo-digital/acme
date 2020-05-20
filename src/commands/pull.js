@@ -14,7 +14,7 @@ module.exports = {
             .config()
             .demandOption('config')
     },
-    handler: (argv) => {
+    handler: async (argv) => {
         const username = argv.username || 'admin'
         const password = argv.password || 'admin'
         const credentials = username + ':' + password
@@ -27,8 +27,8 @@ module.exports = {
             titleResourceType: argv.titleResourceType,
             assetsDir: argv.destination
         })
-        client.getAllComponents(argv.componentsContentPath)
-        client.getPolicies(argv.policyPath)
-        client.getResources(argv.homePage)
+        await client.getAllComponents(argv.componentsContentPath)
+        await client.getPolicies(argv.policyPath)
+        await client.getResources(argv.homePage)
     }
 }
