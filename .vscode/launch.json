@@ -25,7 +25,8 @@
             "args": ["pull", "--config", "test/resources/settings.json"],
             "env": {
                 "DEBUG": "acme:*"
-            }
+            },
+            "preLaunchTask": "clean"
         },
         {
             "type": "node",
