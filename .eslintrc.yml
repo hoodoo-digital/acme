@@ -1,19 +1,25 @@
 env:
-  node: true
-  commonjs: true
-  es6: true
-  jest/globals: true
+    node: true
+    commonjs: true
+    es6: true
+    jest/globals: true
 extends:
-  - standard
-  - plugin:jest/recommended
+    - standard
+    - plugin:jest/recommended
+    - plugin:node/recommended
 globals:
-  Atomics: readonly
-  SharedArrayBuffer: readonly
+    Atomics: readonly
+    SharedArrayBuffer: readonly
 parserOptions:
-  ecmaVersion: 2018
+    ecmaVersion: 2018
 plugins:
     - jest
 rules:
     indent:
         - error
         - 4
+    node/no-missing-require:
+        - error
+        - resolvePaths:
+              - ./
+              - src

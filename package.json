@@ -1,6 +1,9 @@
 {
     "name": "@hoodoo/acme",
     "version": "1.1.0",
+    "engines": {
+        "node": ">=11.14.0"
+    },
     "description": "A tool to generate Storybook stories from AEM content.",
     "main": "index.js",
     "bin": {
@@ -8,6 +11,7 @@
     },
     "scripts": {
         "test": "jest",
+        "test:debug": "node --nolazy --inspect-brk=9229 node_modules/.bin/jest --runInBand",
         "lint:fix": "eslint *.js --fix",
         "lint": "eslint *.js",
         "prettify": "prettier *.js --write"
@@ -23,10 +27,13 @@
         "url": "https://github.com/hoodoo-digital/acme.git"
     },
     "dependencies": {
+        "app-module-path": "^2.2.0",
         "camelcase": "^6.0.0",
         "chalk": "^4.0.0",
         "cheerio": "^1.0.0-rc.3",
         "content-type": "^1.0.4",
+        "core-js": "^3.6.5",
+        "css": "^2.2.4",
         "debug": "^4.1.1",
         "execa": "^4.0.0",
         "humanize-string": "^2.1.0",
@@ -36,6 +43,7 @@
         "node-fetch": "^2.6.0",
         "prettier": "^2.0.5",
         "prompts": "^2.3.2",
+        "xml2js": "^0.4.23",
         "yargs": "^15.3.1",
         "yargs-interactive": "^3.0.0"
     },

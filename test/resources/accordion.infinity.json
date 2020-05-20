@@ -1,0 +1,879 @@
+{
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+    "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Accordion",
+        "cq:template": "/conf/core-components-examples/settings/wcm/templates/content-page",
+        "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+        "cq:lastModified": "Tue Jan 22 2019 12:51:36 GMT+0100",
+        "jcr:description": "Toggle panels of related content",
+        "cq:tags": ["core-components-examples:component-type/container"],
+        "sling:resourceType": "core-components-examples/components/page",
+        "cq:lastModifiedBy": "admin",
+        "root": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "wcm/foundation/components/responsivegrid",
+            "responsivegrid": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "text_157623088": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Feb 15 2019 19:05:53 GMT+0100",
+                    "text": "<h1>Accordion<sub>v1</sub></h1>\n",
+                    "jcr:lastModified": "Fri Feb 15 2019 19:09:39 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1644862132301"]
+                },
+                "text_493933780": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:11:23 GMT+0100",
+                    "text": "<p>Accordion allows users to toggle panels of related content. Panels of varying component type can be created.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:00 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1544762734201"]
+                },
+                "teaser_497061132": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Technical Documentation",
+                    "fileReference": "/content/dam/core-components-examples/library/github-logo.svg",
+                    "actionsEnabled": "false",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Feb 14 2019 16:41:54 GMT+0100",
+                    "titleFromPage": "false",
+                    "linkURL": "https://www.adobe.com/go/aem_cmp_tech_accordion_v1",
+                    "jcr:description": "<p>GitHub</p>\r\n",
+                    "jcr:lastModified": "Thu Feb 14 2019 16:49:57 GMT+0100",
+                    "descriptionFromPage": "false",
+                    "sling:resourceType": "core/wcm/components/teaser/v1/teaser",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1550165685463"]
+                },
+                "teaser_660608423": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Using Core Components",
+                    "fileReference": "/content/dam/core-components-examples/library/adobe-logo.svg",
+                    "actionsEnabled": "false",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Feb 14 2019 16:41:59 GMT+0100",
+                    "titleFromPage": "false",
+                    "linkURL": "https://www.adobe.com/go/aem_cmp_accordion_v1",
+                    "jcr:description": "<p>Adobe Help Center</p>\r\n",
+                    "jcr:lastModified": "Thu Feb 14 2019 17:47:53 GMT+0100",
+                    "descriptionFromPage": "false",
+                    "sling:resourceType": "core/wcm/components/teaser/v1/teaser",
+                    "textIsRich": "true",
+                    "cq:styleIds": ["1550165685463"]
+                },
+                "title_153929501": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Examples",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:23 GMT+0100",
+                    "type": "h2",
+                    "jcr:lastModified": "Thu Dec 06 2018 19:23:25 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759664489"]
+                },
+                "title_290384408": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Standard",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:25 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_975671860": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Accordion with three items with each item being a layout container.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:28 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_944707749": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:10:47 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:10:47 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:23 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:11:51 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_021105873": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                            },
+                            "item_560792289": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                            },
+                            "item_234605691": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "cq:panelTitle": "Item 3",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_837382079": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Sample Content",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:50 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_492503290": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Accordion with three items with each item being a layout container and containing&nbsp;sample content.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:45 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_397543166": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:12:10 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_617130698": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "image": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "fileReference": "/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:12:26 GMT+0100",
+                                    "jcr:lastModified": "Fri Dec 07 2018 13:13:13 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/image/v2/image",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                },
+                                "text": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:12:23 GMT+0100",
+                                    "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:45:56 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                                    "textIsRich": "true",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                }
+                            },
+                            "item_779036566": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "image": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "fileReference": "/content/dam/core-components-examples/library/sample-assets/snowy-mountain-glacier.jpg",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:13:35 GMT+0100",
+                                    "jcr:lastModified": "Fri Dec 07 2018 13:14:44 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/image/v2/image",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                },
+                                "text": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:13:32 GMT+0100",
+                                    "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:46:55 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                                    "textIsRich": "true",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                }
+                            },
+                            "item_770673778": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 3",
+                                "cq:panelTitle": "Item 3",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "image": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "fileReference": "/content/dam/core-components-examples/library/sample-assets/mountain-range.jpg",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:13:59 GMT+0100",
+                                    "jcr:lastModified": "Fri Dec 07 2018 13:14:50 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/image/v2/image",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                },
+                                "text": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:13:55 GMT+0100",
+                                    "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:47:15 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                                    "textIsRich": "true",
+                                    "cq:responsive": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "default": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "width": "6"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_466227129": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Expanded Item",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:59 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_915061381": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Accordion with three items with the item expanded by default being the first item.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:09 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_397543170": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:12:10 GMT+0100",
+                            "expandedItems": ["item_1"],
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_1": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:12:23 GMT+0100",
+                                "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:45:56 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_2": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:32 GMT+0100",
+                                "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:46:55 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_3": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 3",
+                                "cq:panelTitle": "Item 3",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:55 GMT+0100",
+                                "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:47:15 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_466227128": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Expanded Items",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:59 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_915061380": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Accordion with three items and all items expanded by default.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:09 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_397543190": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:12:10 GMT+0100",
+                            "expandedItems": ["item_1", "item_2", "item_3"],
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_1": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:12:23 GMT+0100",
+                                "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:45:56 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_2": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:32 GMT+0100",
+                                "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:46:55 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_3": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 3",
+                                "cq:panelTitle": "Item 3",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:55 GMT+0100",
+                                "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:47:15 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_466227180": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Single Expansion",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:08:59 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_915061311": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Accordion with single expansion enabled, which forces a single item to be expanded at a time. Expanding one item will collapse all others.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:09 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_397543144": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:10:51 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:12:10 GMT+0100",
+                            "expandedItems": ["item_1"],
+                            "singleExpansion": true,
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_1": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:12:23 GMT+0100",
+                                "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu mi bibendum neque egestas congue quisque egestas. Varius morbi enim nunc faucibus a pellentesque. Scelerisque eleifend donec pretium vulputate sapien nec sagittis.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:45:56 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_2": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:32 GMT+0100",
+                                "text": "<p>Hac habitasse platea dictumst quisque sagittis purus. At risus viverra adipiscing at in tellus integer. Sit amet consectetur adipiscing elit duis tristique sollicitudin. Leo vel orci porta non pulvinar neque laoreet suspendisse. Volutpat diam ut venenatis tellus in metus vulputate eu.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:46:55 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            },
+                            "item_3": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:createdBy": "admin",
+                                "jcr:title": "Item 3",
+                                "cq:panelTitle": "Item 3",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:created": "Fri Dec 07 2018 13:13:55 GMT+0100",
+                                "text": "<p>Libero id faucibus nisl tincidunt eget nullam non nisi. Hac habitasse platea dictumst vestibulum. Viverra orci sagittis eu volutpat odio facilisis mauris. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt.</p>\n",
+                                "jcr:lastModified": "Tue Jan 22 2019 12:47:15 GMT+0100",
+                                "sling:resourceType": "core/wcm/components/text/v2/text",
+                                "textIsRich": "true"
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                },
+                "title_361068649": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:title": "Nested",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:22:48 GMT+0100",
+                    "type": "h3",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:19 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/title/v2/title",
+                    "cq:styleIds": ["1544759676459"]
+                },
+                "text_741455954": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Thu Dec 06 2018 19:23:41 GMT+0100",
+                    "text": "<p>Nested accordions, with each item containing an accordion component in its layout container.</p>\n",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:29 GMT+0100",
+                    "sling:resourceType": "core/wcm/components/text/v2/text",
+                    "textIsRich": "true"
+                },
+                "demo_275095838": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "jcr:createdBy": "admin",
+                    "fullWidth": true,
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:created": "Fri Dec 07 2018 13:09:53 GMT+0100",
+                    "jcr:lastModified": "Fri Dec 07 2018 13:09:53 GMT+0100",
+                    "sling:resourceType": "core-components-examples/components/demo",
+                    "component": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core-components-examples/components/demo/component",
+                        "accordion": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "jcr:createdBy": "admin",
+                            "jcr:lastModifiedBy": "admin",
+                            "jcr:created": "Fri Dec 07 2018 13:11:29 GMT+0100",
+                            "jcr:lastModified": "Fri Dec 07 2018 13:25:41 GMT+0100",
+                            "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                            "item_215402425": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 1",
+                                "cq:panelTitle": "Item 1",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "accordion": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:51:03 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                                    "item_468781096": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 1.1",
+                                        "cq:panelTitle": "Item 1.1",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_141376187": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 1.2",
+                                        "cq:panelTitle": "Item 1.2",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_390197765": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 1.3",
+                                        "cq:panelTitle": "Item 1.3",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    }
+                                }
+                            },
+                            "item_467565399": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 2",
+                                "cq:panelTitle": "Item 2",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "accordion_copy": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:51:24 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                                    "item_645266587": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 2.1",
+                                        "cq:panelTitle": "Item 2.1",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_857227661": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 2.2",
+                                        "cq:panelTitle": "Item 2.2",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_810812133": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 2.3",
+                                        "cq:panelTitle": "Item 2.3",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    }
+                                }
+                            },
+                            "item_326905762": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:title": "Item 3",
+                                "cq:panelTitle": "Item 3",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "accordion": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:createdBy": "admin",
+                                    "jcr:lastModifiedBy": "admin",
+                                    "jcr:created": "Fri Dec 07 2018 13:11:20 GMT+0100",
+                                    "jcr:lastModified": "Tue Jan 22 2019 12:51:36 GMT+0100",
+                                    "sling:resourceType": "core/wcm/components/accordion/v1/accordion",
+                                    "item_716487435": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 3.1",
+                                        "cq:panelTitle": "Item 3.1",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_679027031": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 3.2",
+                                        "cq:panelTitle": "Item 3.2",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    },
+                                    "item_331258757": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "jcr:title": "Item 3.3",
+                                        "cq:panelTitle": "Item 3.3",
+                                        "sling:resourceType": "wcm/foundation/components/responsivegrid"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "info": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "sling:resourceType": "core/wcm/components/tabs/v1/tabs",
+                        "properties": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Properties",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/properties"
+                        },
+                        "markup": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "Markup",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/markup"
+                        },
+                        "json": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:panelTitle": "JSON",
+                            "reference": "../../component",
+                            "sling:resourceType": "core-components-examples/components/demo/json"
+                        }
+                    }
+                }
+            }
+        },
+        "image": {
+            "jcr:primaryType": "nt:unstructured",
+            "file": {
+                "jcr:primaryType": "nt:file",
+                "jcr:createdBy": "admin",
+                "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                "jcr:content": {
+                    "jcr:primaryType": "nt:resource",
+                    "jcr:mixinTypes": ["dam:Thumbnails"],
+                    "jcr:lastModifiedBy": "admin",
+                    "jcr:mimeType": "image/png",
+                    "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                    ":jcr:data": 4491,
+                    "jcr:uuid": "25aa261d-0c91-4510-8c36-eba6de9f9376",
+                    "dam:thumbnails": {
+                        "jcr:primaryType": "nt:folder",
+                        "jcr:createdBy": "admin",
+                        "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                        "dam:thumbnail_480.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 3280,
+                                "jcr:uuid": "edbd02c7-f94f-45c8-b9c9-f0214ee569d6"
+                            }
+                        },
+                        "dam:thumbnail_300.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 2422,
+                                "jcr:uuid": "e727ddcf-8009-46f5-abd0-a8de58bf2d51"
+                            }
+                        },
+                        "dam:thumbnail_48.png": {
+                            "jcr:primaryType": "nt:file",
+                            "jcr:createdBy": "admin",
+                            "jcr:created": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                            "jcr:content": {
+                                "jcr:primaryType": "nt:resource",
+                                "jcr:lastModifiedBy": "admin",
+                                "jcr:mimeType": "image/png",
+                                "jcr:lastModified": "Mon Mar 23 2020 16:56:43 GMT-0700",
+                                ":jcr:data": 300,
+                                "jcr:uuid": "b21472d8-7eb5-456c-85d4-3dbbcdeadf3e"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

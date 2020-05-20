@@ -3,25 +3,28 @@ const fetch = require('node-fetch')
 // const contentType = require('content-type');
 const cheerio = require('cheerio')
 const { JSONPath } = require('jsonpath-plus')
-const util = require('util')
-const stream = require('stream')
-const streamPipeline = util.promisify(stream.pipeline)
 const fs = require('fs')
+const css = require('css')
 
 const getTitle = (html) => {
     const $ = cheerio.load(html)
     return $('title').text()
 }
 
-const getData = async (creds, url) => {
+const getData = async (creds, baseUrl, path) => {
     const buffer = Buffer.from(creds)
     const encodedCreds = buffer.toString('base64')
     try {
-        const response = await fetch(url, {
+        const response = await fetch(baseUrl + path, {
             headers: {
                 Authorization: `Basic ${encodedCreds}`
             }
         })
+        // Multiple Choices
+        if (response.status === 300) {
+            const choices = await getJson(response)
+            return getData(creds, baseUrl, choices.shift())
+        }
         if (!response.ok) {
             throw new Error(await getHtml(response).then(getTitle))
         }
@@ -41,7 +44,8 @@ const getJson = async (res) => {
 }
 
 const writeToFile = async (res, filePath) => {
-    return streamPipeline(res.body, fs.createWriteStream('./' + filePath))
+    const dest = fs.createWriteStream(filePath)
+    return await res.body.pipe(dest)
 }
 
 // const parseHtmlFile = file => {
@@ -59,7 +63,7 @@ const getTitleText = (html) => {
     return $('.cmp-title__text').text()
 }
 
-const parseHtml = (html) => {
+const getResourcePaths = (html) => {
     const $ = cheerio.load(html)
     const resourceTypes = [
         {
@@ -85,48 +89,77 @@ const parseHtml = (html) => {
     return resources
 }
 
-const queryJson = (json, path) => {
+const getPointers = (json, path) => {
     return JSONPath({
         path: path,
         json: json,
-        resultType: 'pointer',
-        wrap: false
+        resultType: 'pointer'
     })
 }
 
-const getComponentPaths = (json, containerPath) => {
+const getTitles = (json, resourceType, containerPath, count) => {
     // e.g. /jcr:content/root/container/container
-    const query = containerPath
+    const path = containerPath
         .split('/')
         .map((item) => {
-            return item.includes(':') ? `['${item}']` : item
+            return item.includes(':') ? `'${item}'` : item
         })
         .join('.')
+    const query = `$.${path}[?(@['sling:resourceType'] === '${resourceType}' )].'jcr:title'`
+    const result = JSONPath({
+        path: query,
+        json: json,
+        resultType: 'value',
+        wrap: false
+    })
+    return result && result.slice(-count)
+}
+
+const getComponentPaths = (json, containerType) => {
+    // Find all sub-objects of any object with specified "containerType"
+    const query = `*.[?(@["sling:resourceType"] === "${containerType}")].*@object()`
     // console.log(query)
-    return queryJson(json, `$.${query}.*@object()`)
+    return getPointers(json, query)
 }
 
 const getPolicyPaths = (json) => {
-    return queryJson(json, '$.*@object()')
+    return getPointers(json, '$.*@object()')
 }
 
 // Get all child nodes of type "cq:Page"
-const getPagesJson = (json) => {
+const getPagePaths = (json) => {
     const path = '$[?(@["jcr:primaryType"] === "cq:Page")]'
-    return JSONPath({
-        path: path,
-        json: json,
-        resultType: 'all',
-        wrap: false
-    })
+    return getPointers(json, path)
 }
 
+const getFontUrls = (cssString) => {
+    const cssObj = css.parse(cssString)
+    const path =
+        '$[?(@.type === "font-face")].declarations[?(@.property === "src")].value'
+    const srcArr = JSONPath({
+        path: path,
+        json: cssObj.stylesheet.rules,
+        resultType: 'value'
+    })
+    const result = []
+    for (const src of srcArr) {
+        const matches = src.matchAll(/url\(('|")(?<url>.*?)('|")\)/g)
+        for (const match of matches) {
+            // Strip any query string in url
+            const cleanUrl = match.groups.url.replace(/(\?|#).*$/, '')
+            result.push(cleanUrl)
+        }
+    }
+    return result
+}
 exports.getData = getData
 exports.writeToFile = writeToFile
 exports.getComponentPaths = getComponentPaths
 exports.getHtml = getHtml
 exports.getJson = getJson
-exports.parseHtml = parseHtml
+exports.getResourcePaths = getResourcePaths
 exports.getTitleText = getTitleText
 exports.getPolicyPaths = getPolicyPaths
-exports.getPagesJson = getPagesJson
+exports.getPagePaths = getPagePaths
+exports.getTitles = getTitles
+exports.getFontUrls = getFontUrls

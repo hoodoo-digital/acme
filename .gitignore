@@ -1,2 +1,5 @@
 node_modules
 tmp
+aem-assets
+stories
+.storybook
