@@ -1,5 +1,4 @@
 node_modules
 tmp
-aem-assets
-stories
-.storybook
+aem-assets/
+.storybook/
