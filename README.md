@@ -54,7 +54,7 @@ This is the format for the expected config file. As of now, all fields are requi
 
 ## AEM Content
 
-`acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
+`acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples (`core.wcm.components.examples`) must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
 
 Instructions for installing the AEM Core Components can be found here: [AEM WCM Core Components](https://github.com/adobe/aem-core-wcm-components)
 
