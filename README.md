@@ -22,17 +22,20 @@ or
 export DEBUG=acme:*
 ```
 
-## Configuration file
+## Configuration File
 
-This is the format for the expected config file. As of now, all fields are required.
+This is the format for the expected config file. As of now, all fields are required. You can use the `acme init` command to trigger a prompt that will automatically create the config file, which is named `acme.settings.json` by default.
 ```json
 {
     "username": "admin",
     "password": "admin",
     "baseURL": "https://localhost:4502",
-    "componentsContentPath": "/content/my-site/storybook-sample-content",
-    "componentsContainer": "jcr:content/root/container",
-    "policyPath": "/conf/my-site/settings/wcm/policies/my-site/components"
+    "homePage": "/content/<project appId>/us/en",
+    "policyPath": "/conf/<project appId>/settings/wcm/policies/<project appId>/components",
+    "componentsContentPath": "/content/core-components-examples/library",
+    "pageContentContainerPath": "/jcr:content/root/responsivegrid",
+    "componentsContainerType": "core-components-examples/components/demo/component",
+    "titleResourceType": "core/wcm/components/title/v2/title"
 }
 ```
 
@@ -41,46 +44,48 @@ This is the format for the expected config file. As of now, all fields are requi
 1. `username` - Username for AEM instance
 2. `password` - Password for AEM instance
 3. `baseURL` - Base url for the AEM instance
-4. `componentsContentPath` - Path to the parent page for all component content pages
-5. `componentsContainer` - The JCR parent node for component content on a given page
-6. `policyPath` - The JCR node that contains all component policies
+4. `homePage` - Home page for the site being developed
+5. `policyPath` - The JCR node that contains all component policies
+6. `componentsContentPath` - Path to the parent page for all Core Component example content pages
+7. `pageContentContainerPath` - Used for parsing the HTML of the Core Component example pages
+8. `componentsContainerType` - Component type that contains each example component
+9. `titleResourceType` - `acme` uses the Title component text on the example content pages to name each of the stories
+
 
 ## AEM Content
 
-Each page under `componentsContentPath` represents all the stories for a single component. To allow `acme` to correctly generate stories for each use case from a given page, the page must maintain a specific structure; each component use case must be preceded by a `title` component describing that use case.
+`acme` parses the rendered HTML of the Core Components example pages to generate stories based on those components. `acme` uses the Title component before each example to name each story and looks for the Demo container component to know where each individual component begins and ends. The AEM Core Component examples (`core.wcm.components.examples`) must be installed on the instance configured in the `baseURL` parameter of the `acme.settings.json` file.
 
-For example, if we have two use cases for the `button` component, say "Simple Button" and "Fancy Button", the jcr content would look something like this:
-```
-content
-|--my-site
-    |-- storybook-sample-content
-        |-- button
-            |-- jcr:content
-                |-- root
-                    |-- container
-                        |-- title       // Simple Button
-                        |-- button
-                        |-- title_1     // Fancy Button
-                        |-- button_1
-```
+Instructions for installing the AEM Core Components can be found here: [AEM WCM Core Components](https://github.com/adobe/aem-core-wcm-components)
 
-You can reference the [acme sample project](https://github.com/hoodoo-digital/acme-storybook-sample-project) for details.
-
-## Command line reference
+## Command Line Reference
 ```bash
-acme-storybook-sample-project git:(master) npx acme --help
 Usage: acme <command> <options>
 
 Commands:
-  acme pull    Pull content from AEM
-  acme create  Create stories from AEM content
+  acme init [file]  Generate the configuration file
+  acme pull         Pull content from AEM
+  acme create       Create stories from AEM content
 
 Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
 ```
+### `init`
 ```bash
-acme-storybook-sample-project git:(master) npx acme pull --help
+acme init [file]
+
+Generate the configuration file
+
+Positionals:
+  file  Configuration file path         [string] [default: "acme.settings.json"]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+### `pull`
+```bash
 acme pull
 
 Pull content from AEM
@@ -92,8 +97,8 @@ Options:
                                                 [string] [default: "aem-assets"]
   --config           Path to JSON config file                         [required]
 ```
+### `create`
 ```bash
-acme-storybook-sample-project git:(master) npx acme create --help
 acme create
 
 Create stories from AEM content
@@ -104,7 +109,7 @@ Options:
   --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
 ```
 
-## Generated assets
+## Generated Assets
 
 Running `acme pull` "pulls" generated component markup, referenced images, js and css as well as component policies. This command generates the following directories and files under the destination directory provided by the `--destination` or `-d` option.
 
@@ -118,7 +123,7 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
    All component policies are saved here as `json` files. These policies are referenced in the respective component stories to optionally apply any defined style system.
 
 4. `resources`
-   This directory contains the `clientlib-base` js and css which includes the AEM Core Component client libraries as well as AEM Grid. Any other resources defined on the page are also included. For example, the sample project references `https://use.fontawesome.com/db86937673.js` to load icons.
+   This directory contains the `clientlib-base` js and css which includes the AEM Core Component client libraries as well as AEM Grid.
 
 `acme create` generates stories for each component variation under the `components` directory of the source directory defined by `--source` or `-s` option. The source directory would be the same as the destination directory in the `pull` command. The following assets are created:
 
@@ -128,16 +133,14 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
 2. `.storybook/preview.js`
    This file imports the assets added to the `resources` directory as well as the entry point to the webpack application at `/src/main/webpack/site/main.ts`--this enables storybook to render the components with the default CSS and JavaScript from the AEM Core Components along with your own custom CSS and JavaScript.
 
-## Example setup
+## Example Setup
 
 Steps to get up and running with `acme` on a fresh AEM archetype project.
 
 1. From the `ui.frontend` directory run the following commands:
     ```
     npm install @storybook/aem -D
-    npm install storybook-aem-style-system -D
-    npm install storybook-addon-xd-designs -D
-    npm install @hoodoo/acme -D
+    npm install -D storybook-aem-style-system storybook-addon-xd-designs @hoodoo/acme hygen @babel/preset-typescript
     ```
 
 2. Add a `.storybook` directory inside of `ui.frontend` and add a `main.js` file inside of that. Below is an example `main.js` that will work with the default archetype setup, however you may need to alter this based on your project needs. Check out the Storybook docs for information on [custom webpack configs](https://storybook.js.org/docs/configurations/custom-webpack-config/).
@@ -172,18 +175,17 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
     };
     ```
 
-3. Inside your `package.json` add the following commands to the `scripts` section
+3. Run `acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
+
+4. Inside your `package.json` add the following commands to the `scripts` section
 
     ```
-    "storybook": "start-storybook -s ./src/main/webpack/static,./ -p 9001",
+    "storybook": "start-storybook -s ./storybook-assets -p 9001",
     "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets"
     ```
-
-4. Add an `acme.settings.json` file inside the `ui.frontend` directory as described in the "Configuration File" section of this document.
 
 5. Ensure the AEM Core Component packages and sample content is installed on the instance specified in your `acme.settings.json`. The sample content installs to this location: `/content/core-components-examples/library`.
 
 With those steps complete you can now run `npm run acme` to pull the component markup from your AEM instance and automatically generate Storybook stories inside your project.
 
 Once `acme` has finished run `npm run storybook`.
-
