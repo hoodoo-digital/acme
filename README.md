@@ -97,6 +97,7 @@ Options:
                                                 [string] [default: "aem-assets"]
   --config           Path to JSON config file                         [required]
 ```
+### `create`
 ```bash
 acme create
 
