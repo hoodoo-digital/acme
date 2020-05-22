@@ -31,39 +31,49 @@ const createStories = async (assetsPath) => {
     const componentsRelPath = path.join(path.sep, 'components')
     const components = await readdir(componentsPath)
 
-    for (const component of components) {
-        if (component.isDirectory()) {
+    const generatedFiles = components
+        .filter((component) => component.isDirectory())
+        .map((component) => {
             const logMsg = chalk.green.bold(component.name)
-            log(`Found ${logMsg} component`)
-
-            log(`Creating stories file for ${logMsg}`)
+            log(`Found ${logMsg} component... creating stories file`)
             // Create stories file
-            await generator.run('stories', component.name, {
-                policiesPath: policiesRelPath
-            })
-            const templatesPath = path.join(componentsPath, component.name)
-            const templatesRelPath = path.join(
-                componentsRelPath,
-                component.name
-            )
-            const templates = await readdir(templatesPath)
-            for (const template of templates) {
-                // Add story to stories file
-                const storyName = camelCase(
-                    path.basename(template.name, '.html'),
-                    { pascalCase: true }
-                )
-                const templateLogMsg = chalk.yellow.bold(
-                    humanizeString(storyName)
-                )
-                log(`Adding ${templateLogMsg} story`)
-                await generator.run('story', component.name, {
-                    storyName: storyName,
-                    templatePath: path.join(templatesRelPath, template.name)
+            return generator
+                .run('stories', component.name, {
+                    policiesPath: policiesRelPath
                 })
-            }
-        }
-    }
+                .then(async () => {
+                    const templatesPath = path.join(
+                        componentsPath,
+                        component.name
+                    )
+                    const templatesRelPath = path.join(
+                        componentsRelPath,
+                        component.name
+                    )
+                    const templates = await readdir(templatesPath)
+                    for (const template of templates) {
+                        // Add story to stories file
+                        const storyName = camelCase(
+                            path.basename(template.name, '.html'),
+                            { pascalCase: true }
+                        )
+                        const templateLogMsg = chalk.yellow.bold(
+                            humanizeString(storyName)
+                        )
+                        log(
+                            `Adding ${templateLogMsg} story for ${logMsg} component`
+                        )
+                        await generator.run('story', component.name, {
+                            storyName: storyName,
+                            templatePath: path.join(
+                                templatesRelPath,
+                                template.name
+                            )
+                        })
+                    }
+                })
+        })
+    return Promise.all(generatedFiles)
 }
 
 const generatePreviewJS = async (assetsPath) => {
