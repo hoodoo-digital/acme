@@ -1,5 +1,5 @@
 // const argv = require('yargs').argv
-const log = require('debug')('acme:Create stories')
+const log = require('debug')('acme:create')
 const path = require('path')
 const camelCase = require('camelcase')
 const humanizeString = require('humanize-string')

@@ -1,19 +1,16 @@
 // For node environments < v11.6
 require('core-js/features/array/flat-map')
 
-const execa = require('execa')
+const { runner } = require('hygen')
+const Logger = require('hygen/lib/logger')
 const path = require('path')
+const defaultTemplates = path.join(__dirname, '_templates')
+const log = require('debug')('acme:generator')
 
-const execOptions = {
-    env: {
-        HYGEN_TMPLS: path.join(__dirname, '_templates'),
-        HYGEN_OVERWRITE: 1
-    }
-    // stdio: 'inherit'
-}
+process.env.HYGEN_OVERWRITE = 1
 
 const run = async (template, name, options) => {
-    let args = ['--no-install', 'hygen', template, 'new', name]
+    let args = [template, 'new', name]
 
     if (options) {
         const templateVars = Object.entries(options).flatMap((item) => {
@@ -22,7 +19,16 @@ const run = async (template, name, options) => {
         })
         args = args.concat(templateVars)
     }
-    await execa('npx', args, execOptions)
+
+    // See https://github.com/jondot/hygen#build-your-own
+    await runner(args, {
+        templates: defaultTemplates,
+        cwd: process.cwd(),
+        logger: new Logger(log),
+        createPrompter: () => {},
+        exec: () => {},
+        debug: !!process.env.DEBUG
+    })
 }
 
 exports.run = run
