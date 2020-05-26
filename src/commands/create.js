@@ -19,7 +19,13 @@ module.exports = {
         }
     },
     handler: async (argv) => {
-        await createStories(argv.source).catch(errorHandler)
-        await generatePreviewJS(argv.source).catch(errorHandler)
+        const start = process.hrtime()
+        Promise.all([
+            createStories(argv.source).catch(errorHandler),
+            generatePreviewJS(argv.source).catch(errorHandler)
+        ]).then(() => {
+            const diff = process.hrtime(start)
+            log('Took %d seconds', (diff[0] + diff[1] / 1e9).toFixed(3))
+        })
     }
 }

@@ -37,7 +37,8 @@
             "args": ["create"],
             "env": {
                 "DEBUG": "acme:*"
-            }
+            },
+            "console": "integratedTerminal"
         }
     ]
 }
