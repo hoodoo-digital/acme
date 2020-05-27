@@ -103,7 +103,7 @@ const getContent = async (html) => {
 
     resourcePaths
         .filter((p) => {
-            const isExternal = /^http/.test(p)
+            const isExternal = utils.isExternalUrl(p)
             if (isExternal) {
                 log(`Skipping external resource: ${chalk.red(p)}`)
             }
@@ -171,18 +171,19 @@ const getResources = async (contentPath) => {
                     // const resourceDir = path.dirname(resourcePath)
                     const resource = getData(resourcePath).then(
                         async (response) => {
-                            if (/^http/.test(resourcePath)) {
+                            if (utils.isExternalUrl(resourcePath)) {
                                 // const clone = response.clone()
                                 const contentType = response.headers.get(
                                     'content-type'
                                 )
                                 const extension = mime.extension(contentType)
                                 const resourceUrl = new URL(resourcePath)
+                                const name = `${
+                                    resourceUrl.hostname
+                                }${resourceUrl.pathname.replace('/', '-')}`
                                 filename = path.format({
                                     ext: `.${extension}`,
-                                    name: `${
-                                        resourceUrl.hostname
-                                    }${resourceUrl.pathname.replace('/', '-')}`
+                                    name: name
                                 })
                             }
                             // const clone = response.clone()

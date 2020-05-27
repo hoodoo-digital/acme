@@ -26,7 +26,10 @@ const tidy = (html) => {
     return prettier.format(html, { parser: 'html' })
 }
 
+const isExternalUrl = (path) => /^http/.test(path)
+
 exports.getHtmlPath = getHtmlPath
 exports.getJsonPath = getJsonPath
 exports.writeToFile = writeToFile
 exports.tidy = tidy
+exports.isExternalUrl = isExternalUrl

@@ -6,6 +6,8 @@ const { JSONPath } = require('jsonpath-plus')
 const fs = require('fs')
 const css = require('css')
 
+const utils = require('utils')
+
 const getTitle = (html) => {
     const $ = cheerio.load(html)
     return $('title').text()
@@ -14,7 +16,7 @@ const getTitle = (html) => {
 const getData = async (creds, baseUrl, path) => {
     const buffer = Buffer.from(creds)
     const encodedCreds = buffer.toString('base64')
-    const url = /^http/.test(path) ? path : baseUrl + path
+    const url = utils.isExternalUrl(path) ? path : baseUrl + path
     try {
         const response = await fetch(url, {
             headers: {
