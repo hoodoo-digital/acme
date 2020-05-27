@@ -14,8 +14,9 @@ const getTitle = (html) => {
 const getData = async (creds, baseUrl, path) => {
     const buffer = Buffer.from(creds)
     const encodedCreds = buffer.toString('base64')
+    const url = /^http/.test(path) ? path : baseUrl + path
     try {
-        const response = await fetch(baseUrl + path, {
+        const response = await fetch(url, {
             headers: {
                 Authorization: `Basic ${encodedCreds}`
             }

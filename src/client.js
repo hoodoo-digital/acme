@@ -4,6 +4,7 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 const log = require('debug')('acme:Pull content')
 const chalk = require('chalk')
+const mime = require('mime-types')
 
 let getData, containerPath, containerType, assetsDir, titleResourceType
 
@@ -166,10 +167,24 @@ const getResources = async (contentPath) => {
                     )
                 })
                 .forEach(async (resourcePath) => {
-                    const filename = path.basename(resourcePath)
+                    let filename = path.basename(resourcePath)
                     // const resourceDir = path.dirname(resourcePath)
                     const resource = getData(resourcePath).then(
                         async (response) => {
+                            if (/^http/.test(resourcePath)) {
+                                // const clone = response.clone()
+                                const contentType = response.headers.get(
+                                    'content-type'
+                                )
+                                const extension = mime.extension(contentType)
+                                const resourceUrl = new URL(resourcePath)
+                                filename = path.format({
+                                    ext: `.${extension}`,
+                                    name: `${
+                                        resourceUrl.hostname
+                                    }${resourceUrl.pathname.replace('/', '-')}`
+                                })
+                            }
                             // const clone = response.clone()
                             // getFonts(clone, resourceDir, targetPath)
                             return core.writeToFile(

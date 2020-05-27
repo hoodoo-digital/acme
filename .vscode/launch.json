@@ -1,5 +1,13 @@
 {
     "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "settingsFile",
+            "type": "promptString",
+            "default": "test/resources/settings.json",
+            "description": "Relative path to the settings file"
+        }
+    ],
     "configurations": [
         {
             "name": "npm debug tests",
@@ -22,11 +30,12 @@
             "name": "acme pull",
             "program": "${workspaceFolder}/index.js",
             "skipFiles": ["<node_internals>/**"],
-            "args": ["pull", "--config", "test/resources/settings.json"],
+            "args": ["pull", "--config", "${input:settingsFile}"],
             "env": {
                 "DEBUG": "acme:*"
             },
-            "preLaunchTask": "clean"
+            "preLaunchTask": "clean",
+            "console": "integratedTerminal"
         },
         {
             "type": "node",
