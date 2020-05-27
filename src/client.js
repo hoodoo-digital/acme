@@ -4,7 +4,6 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 const log = require('debug')('acme:Pull content')
 const chalk = require('chalk')
-const mime = require('mime-types')
 
 let getData, containerPath, containerType, assetsDir, titleResourceType
 
@@ -158,43 +157,32 @@ const getResources = async (contentPath) => {
             const resourcePaths = core.getResourcePaths(html)
             const targetPath = path.join(assetsDir, 'resources')
             mkdirp.sync(targetPath)
-            const resources = []
-            resourcePaths
+            const resources = resourcePaths
                 .filter((p) => {
                     // TODO - Define whitelist in config
                     return ['clientlib-base', 'http'].some((x) =>
                         p.includes(x)
                     )
                 })
-                .forEach(async (resourcePath) => {
-                    let filename = path.basename(resourcePath)
+                .map(async (resourcePath) => {
                     // const resourceDir = path.dirname(resourcePath)
-                    const resource = getData(resourcePath).then(
-                        async (response) => {
-                            if (utils.isExternalUrl(resourcePath)) {
-                                // const clone = response.clone()
-                                const contentType = response.headers.get(
-                                    'content-type'
-                                )
-                                const extension = mime.extension(contentType)
-                                const resourceUrl = new URL(resourcePath)
-                                const name = `${
-                                    resourceUrl.hostname
-                                }${resourceUrl.pathname.replace('/', '-')}`
-                                filename = path.format({
-                                    ext: `.${extension}`,
-                                    name: name
-                                })
-                            }
+                    return getData(resourcePath).then(async (response) => {
+                        let filename = path.basename(resourcePath)
+                        if (utils.isExternalUrl(resourcePath)) {
                             // const clone = response.clone()
-                            // getFonts(clone, resourceDir, targetPath)
-                            return core.writeToFile(
-                                response,
-                                path.join(targetPath, filename)
+                            const contentType = response.headers.get(
+                                'content-type'
+                            )
+                            filename = utils.buildFilename(
+                                contentType,
+                                resourcePath
                             )
                         }
-                    )
-                    resources.push(resource)
+                        const filepath = path.join(targetPath, filename)
+                        // const clone = response.clone()
+                        // getFonts(clone, resourceDir, targetPath)
+                        return core.writeToFile(response, filepath)
+                    })
                 })
             return Promise.all(resources)
         })
