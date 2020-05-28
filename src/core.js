@@ -61,10 +61,6 @@ const writeToFile = async (res, filePath) => {
 //     })
 
 // }
-const getTitleText = (html) => {
-    const $ = cheerio.load(html)
-    return $('.cmp-title__text').text()
-}
 
 const getResourcePaths = (html) => {
     const $ = cheerio.load(html)
@@ -161,7 +157,6 @@ exports.getComponentPaths = getComponentPaths
 exports.getHtml = getHtml
 exports.getJson = getJson
 exports.getResourcePaths = getResourcePaths
-exports.getTitleText = getTitleText
 exports.getPolicyPaths = getPolicyPaths
 exports.getPagePaths = getPagePaths
 exports.getTitles = getTitles
