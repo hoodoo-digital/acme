@@ -6,6 +6,12 @@
             "type": "promptString",
             "default": "test/resources/settings.json",
             "description": "Relative path to the settings file"
+        },
+        {
+            "id": "testNamePattern",
+            "type": "promptString",
+            "default": "*",
+            "description": "Regex to match tests to be run"
         }
     ],
     "configurations": [
@@ -20,9 +26,10 @@
                 "test:debug",
                 "--",
                 "-t",
-                "getFontUrls"
+                "${input:testNamePattern}"
             ],
-            "port": 9229
+            "port": 9229,
+            "console": "integratedTerminal"
         },
         {
             "type": "node",

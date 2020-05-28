@@ -1,31 +1,22 @@
 const responseMap = {
-    error: {
+    '/error': {
         ok: false,
-        text: () => {
-            return new Promise((resolve, reject) => {
-                const errorHtml = '<title>Error</title>'
-                resolve(errorHtml)
-            })
-        }
+        text: () => Promise.resolve('<title>Error</title>')
     },
-    valid: {
+    '/valid': {
         status: 200,
         ok: true
     },
-    multiple: {
+    '/multiple': {
         status: 300,
-        json: () => {
-            return new Promise((resolve, reject) => {
-                resolve(['valid'])
-            })
-        }
+        json: () => Promise.resolve(['/valid'])
     }
 }
 
 const fetch = (url, options) => {
-    return new Promise((resolve, reject) => {
-        resolve(responseMap[url])
-    })
+    // Strip leading "baseUrl" string
+    const path = url.replace(/\w+/, '')
+    return Promise.resolve(responseMap[path])
 }
 
 module.exports = fetch
