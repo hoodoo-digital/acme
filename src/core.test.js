@@ -2,13 +2,15 @@ const core = require('src/core')
 
 describe('core', () => {
     describe('getData', () => {
+        const creds = 'creds'
+        const baseUrl = 'base'
         test('returns response object for valid request', async () => {
-            const response = await core.getData('creds', 'valid')
+            const response = await core.getData(creds, baseUrl, '/valid')
             expect(response).toEqual(expect.objectContaining({ ok: true }))
         })
 
         test('returns response object for multiple choice request', async () => {
-            const response = await core.getData('creds', 'multiple')
+            const response = await core.getData(creds, baseUrl, '/multiple')
             expect(response).toStrictEqual(
                 expect.objectContaining({ ok: true })
             )
@@ -16,17 +18,17 @@ describe('core', () => {
 
         test('throws error for invalid request', async () => {
             expect.assertions(1)
-            await expect(core.getData('creds', 'error')).rejects.toThrow(
+            await expect(core.getData('creds', '/error')).rejects.toThrow(
                 'Error'
             )
         })
     })
 
-    describe('getPageJson', () => {
+    describe('getPagePaths', () => {
         test('returns array of pages', () => {
             const json = require('test/resources/library.1.json')
-            const expected = require('test/resources/expected/pages-json-array.json')
-            expect(core.getPagesJson(json)).toEqual(
+            const expected = ['/accordion', '/breadcrumb', '/button']
+            expect(core.getPagePaths(json)).toEqual(
                 expect.arrayContaining(expected)
             )
         })

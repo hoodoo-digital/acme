@@ -6,6 +6,8 @@ const { JSONPath } = require('jsonpath-plus')
 const fs = require('fs')
 const css = require('css')
 
+const utils = require('utils')
+
 const getTitle = (html) => {
     const $ = cheerio.load(html)
     return $('title').text()
@@ -14,8 +16,9 @@ const getTitle = (html) => {
 const getData = async (creds, baseUrl, path) => {
     const buffer = Buffer.from(creds)
     const encodedCreds = buffer.toString('base64')
+    const url = utils.isExternalUrl(path) ? path : baseUrl + path
     try {
-        const response = await fetch(baseUrl + path, {
+        const response = await fetch(url, {
             headers: {
                 Authorization: `Basic ${encodedCreds}`
             }
@@ -58,10 +61,6 @@ const writeToFile = async (res, filePath) => {
 //     })
 
 // }
-const getTitleText = (html) => {
-    const $ = cheerio.load(html)
-    return $('.cmp-title__text').text()
-}
 
 const getResourcePaths = (html) => {
     const $ = cheerio.load(html)
@@ -158,7 +157,6 @@ exports.getComponentPaths = getComponentPaths
 exports.getHtml = getHtml
 exports.getJson = getJson
 exports.getResourcePaths = getResourcePaths
-exports.getTitleText = getTitleText
 exports.getPolicyPaths = getPolicyPaths
 exports.getPagePaths = getPagePaths
 exports.getTitles = getTitles

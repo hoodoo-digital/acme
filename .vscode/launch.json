@@ -1,5 +1,19 @@
 {
     "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "settingsFile",
+            "type": "promptString",
+            "default": "test/resources/settings.json",
+            "description": "Relative path to the settings file"
+        },
+        {
+            "id": "testNamePattern",
+            "type": "promptString",
+            "default": "*",
+            "description": "Regex to match tests to be run"
+        }
+    ],
     "configurations": [
         {
             "name": "npm debug tests",
@@ -12,9 +26,10 @@
                 "test:debug",
                 "--",
                 "-t",
-                "getFontUrls"
+                "${input:testNamePattern}"
             ],
-            "port": 9229
+            "port": 9229,
+            "console": "integratedTerminal"
         },
         {
             "type": "node",
@@ -22,11 +37,12 @@
             "name": "acme pull",
             "program": "${workspaceFolder}/index.js",
             "skipFiles": ["<node_internals>/**"],
-            "args": ["pull", "--config", "test/resources/settings.json"],
+            "args": ["pull", "--config", "${input:settingsFile}"],
             "env": {
                 "DEBUG": "acme:*"
             },
-            "preLaunchTask": "clean"
+            "preLaunchTask": "clean",
+            "console": "integratedTerminal"
         },
         {
             "type": "node",
