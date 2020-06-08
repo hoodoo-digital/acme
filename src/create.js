@@ -1,7 +1,6 @@
 // const argv = require('yargs').argv
 const log = require('debug')('acme:create')
 const path = require('path')
-const camelCase = require('camelcase')
 const humanizeString = require('humanize-string')
 const chalk = require('chalk')
 
@@ -51,12 +50,10 @@ const createStories = async (assetsPath) => {
                         component.name
                     )
                     const templates = await readdir(templatesPath)
+                    let num = 1
                     for (const template of templates) {
                         // Add story to stories file
-                        const storyName = camelCase(
-                            path.basename(template.name, '.html'),
-                            { pascalCase: true }
-                        )
+                        const storyName = path.basename(template.name, '.html')
                         const templateLogMsg = chalk.yellow.bold(
                             humanizeString(storyName)
                         )
@@ -64,6 +61,7 @@ const createStories = async (assetsPath) => {
                             `Adding ${templateLogMsg} story for ${logMsg} component`
                         )
                         await generator.run('story', component.name, {
+                            funcName: 'Example_' + num++,
                             storyName: storyName,
                             templatePath: path.join(
                                 templatesRelPath,
