@@ -32,16 +32,17 @@ const getRenderedComponent = async (
             title
         )} state of ${componentLogMsg} component`
     )
-    const filename = title.replace(/\W+/g, '-') + '.html'
-    const writeToFile = utils.writeToFile.bind(
-        null,
-        `${componentDir}/${filename}`
-    )
+
     return getData(utils.getHtmlPath(componentContentPath))
         .then(async (response) => {
+            const filepath = path.format({
+                dir: componentDir,
+                name: title.replace(/\W+/g, '-'),
+                ext: '.html'
+            })
             const html = await core.getHtml(response)
             getContent(html)
-            writeToFile(utils.tidy(html))
+            utils.writeToFile(filepath, utils.tidy(html))
         })
         .catch((error) => {
             throw new Error(error)
@@ -53,7 +54,7 @@ const getRenderedComponents = async (json, pageUrl) => {
     const component = pageUrl.split('/').pop()
     const componentLogMsg = chalk.green.bold(component)
     log(`Retrieving states from ${componentLogMsg} component page`)
-    const componentDir = `${assetsDir}/components/${component}`
+    const componentDir = path.join(assetsDir, 'components', component)
     const componentPaths = core.getComponentPaths(json, containerType)
     const titles = core.getTitles(
         json,
@@ -80,45 +81,41 @@ const getRenderedComponents = async (json, pageUrl) => {
 }
 
 const getAllComponents = async (contentPath) => {
-    return getComponentPages(contentPath)
-        .then((pagePaths) => {
-            const result = []
-            for (const pagePath of pagePaths) {
-                const fullPagePath = contentPath + pagePath
-                const components = getData(utils.getJsonPath(fullPagePath))
-                    .then(core.getJson)
-                    .then((json) => {
-                        return getRenderedComponents(json, fullPagePath)
-                    })
-                result.push(components)
-            }
-            return result
+    return getComponentPages(contentPath).then((pagePaths) => {
+        const result = pagePaths.map((pagePath) => {
+            const fullPagePath = contentPath + pagePath
+            const components = getData(utils.getJsonPath(fullPagePath))
+                .then(core.getJson)
+                .then((json) => getRenderedComponents(json, fullPagePath))
+            return components
         })
-        .then(Promise.all.bind(Promise))
+        return Promise.all(result)
+    })
 }
 
 const getContent = async (html) => {
     const resourcePaths = core.getResourcePaths(html)
 
-    resourcePaths
+    const resources = resourcePaths
         .filter((p) => {
-            const isExternal = /^http/.test(p)
+            const isExternal = utils.isExternalUrl(p)
             if (isExternal) {
                 log(`Skipping external resource: ${chalk.red(p)}`)
             }
             return !isExternal
         })
-        .forEach((resourcePath) => {
+        .map((resourcePath) => {
             const filename = path.basename(resourcePath)
             const filepath = path.dirname(resourcePath)
 
             const targetPath = path.join(assetsDir, filepath)
-            // console.log(baseURL + resourcePath)
+            const fullPath = path.join(targetPath, filename)
             mkdirp.sync(targetPath)
-            getData(resourcePath).then((response) => {
-                core.writeToFile(response, `${targetPath}/${filename}`)
-            })
+            return getData(resourcePath).then((response) =>
+                core.writeToFile(response, fullPath)
+            )
         })
+    return Promise.all(resources)
 }
 
 /* const getFonts = async (response, resourceDir, targetPath) => {
@@ -157,28 +154,32 @@ const getResources = async (contentPath) => {
             const resourcePaths = core.getResourcePaths(html)
             const targetPath = path.join(assetsDir, 'resources')
             mkdirp.sync(targetPath)
-            const resources = []
-            resourcePaths
+            const resources = resourcePaths
                 .filter((p) => {
                     // TODO - Define whitelist in config
                     return ['clientlib-base', 'http'].some((x) =>
                         p.includes(x)
                     )
                 })
-                .forEach(async (resourcePath) => {
-                    const filename = path.basename(resourcePath)
+                .map(async (resourcePath) => {
                     // const resourceDir = path.dirname(resourcePath)
-                    const resource = getData(resourcePath).then(
-                        async (response) => {
+                    return getData(resourcePath).then(async (response) => {
+                        let filename = path.basename(resourcePath)
+                        if (utils.isExternalUrl(resourcePath)) {
                             // const clone = response.clone()
-                            // getFonts(clone, resourceDir, targetPath)
-                            return core.writeToFile(
-                                response,
-                                path.join(targetPath, filename)
+                            const contentType = response.headers.get(
+                                'content-type'
+                            )
+                            filename = utils.buildFilename(
+                                contentType,
+                                resourcePath
                             )
                         }
-                    )
-                    resources.push(resource)
+                        const filepath = path.join(targetPath, filename)
+                        // const clone = response.clone()
+                        // getFonts(clone, resourceDir, targetPath)
+                        return core.writeToFile(response, filepath)
+                    })
                 })
             return Promise.all(resources)
         })
@@ -201,19 +202,15 @@ const getPolicies = async (policiesUrl) => {
     return getData(utils.getJsonPath(policiesUrl))
         .then(core.getJson)
         .then((json) => {
-            // console.log(json)
             const policyPaths = core.getPolicyPaths(json)
-            // console.log(paths)
-            const policiesDir = assetsDir + '/policies'
+            const policiesDir = path.join(assetsDir, 'policies')
             mkdirp.sync(policiesDir)
 
-            const result = []
-            for (const policyPath of policyPaths) {
-                result.push(getPolicy(policiesUrl + policyPath, policiesDir))
-            }
-            return result
+            const result = policyPaths.map((policyPath) =>
+                getPolicy(policiesUrl + policyPath, policiesDir)
+            )
+            return Promise.all(result)
         })
-        .then(Promise.all.bind(Promise))
 }
 
 exports.getAllComponents = getAllComponents

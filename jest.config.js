@@ -1,5 +1,6 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
+const path = require('path')
 
 module.exports = {
     // All imported modules in your tests should be mocked automatically
@@ -15,7 +16,7 @@ module.exports = {
     clearMocks: true,
 
     // Indicates whether the coverage information should be collected while executing the test
-    // collectCoverage: false,
+    collectCoverage: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
     // collectCoverageFrom: undefined,
@@ -61,7 +62,7 @@ module.exports = {
     // maxWorkers: "50%",
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    moduleDirectories: ['node_modules', __dirname],
+    moduleDirectories: ['node_modules', __dirname, path.join(__dirname, 'src')],
 
     // An array of file extensions your modules use
     // moduleFileExtensions: [
