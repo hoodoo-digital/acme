@@ -50,7 +50,7 @@
             "name": "acme create",
             "program": "${workspaceFolder}/index.js",
             "skipFiles": ["<node_internals>/**"],
-            "args": ["create"],
+            "args": ["create", "--config", "test/resources/settings.json"],
             "env": {
                 "DEBUG": "acme:*"
             },

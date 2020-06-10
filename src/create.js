@@ -4,10 +4,9 @@ const path = require('path')
 const camelCase = require('camelcase')
 const humanizeString = require('humanize-string')
 const chalk = require('chalk')
+const fs = require('fs')
 
 const generator = require('generator')
-
-const fs = require('fs')
 
 const errorHandler = (err) => {
     if (err.code === 'ENOENT') {

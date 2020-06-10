@@ -1,5 +1,6 @@
 const log = require('debug')('acme:create')
 const { createStories, generatePreviewJS } = require('create')
+const xd = require('xd')
 
 const errorHandler = (err) => {
     log(err.message)
@@ -10,17 +11,23 @@ const errorHandler = (err) => {
 module.exports = {
     command: 'create',
     describe: 'Create stories from AEM content',
-    builder: {
-        source: {
-            alias: 's',
-            describe: 'Path to downloaded AEM assets',
-            type: 'string',
-            default: 'aem-assets'
-        }
+    builder: (yargs) => {
+        return yargs
+            .option('source', {
+                alias: 's',
+                describe: 'Path to downloaded AEM assets',
+                type: 'string',
+                default: 'aem-assets'
+            })
+            .config()
+            .demandOption('config')
     },
     handler: async (argv) => {
         const start = process.hrtime()
         Promise.all([
+            xd
+                .init(argv.designDocUrl, argv.apiKey, argv.source)
+                .catch(errorHandler),
             createStories(argv.source).catch(errorHandler),
             generatePreviewJS(argv.source).catch(errorHandler)
         ]).then(() => {

@@ -7,5 +7,7 @@
     "componentsContentPath": "/content/core-components-examples/library",
     "pageContentContainerPath": "/jcr:content/root/responsivegrid",
     "componentsContainerType": "core-components-examples/components/demo/component",
-    "titleResourceType": "core/wcm/components/title/v2/title"
+    "titleResourceType": "core/wcm/components/title/v2/title",
+    "designDocUrl": "https://xd.adobe.com/view/699b3e43-caa2-46fc-69a7-6ceb17ca0404-1faa",
+    "apiKey": "XDCEforHoodoo"
 }
