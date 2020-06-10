@@ -4,6 +4,11 @@ const path = require('path')
 const baseUrl = 'https://xdce.adobe.io'
 
 const init = async (designDocUrl, apiKey, dest) => {
+    if (!designDocUrl || !apiKey) {
+        throw Error(
+            'The XD design document URL and/or XD api key not specified... skipping artboard file creation.'
+        )
+    }
     this.designDocUrl = designDocUrl
     this.apiKey = apiKey
     const artboards = await getDesigns()
