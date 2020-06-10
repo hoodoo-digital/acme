@@ -45,7 +45,10 @@ const getArtboards = (data) => {
     return data.artboards.map((item) => {
         return {
             name: item.name,
-            url: `${this.designDocUrl}/screen/${item.id}`
+            url: `${this.designDocUrl}/screen/${item.id}/${item.name.replace(
+                /\s/g,
+                ''
+            )}`
         }
     })
 }
