@@ -8,14 +8,14 @@
 ```
 npm install @hoodoo/acme
 npx acme pull --config <config json file> -d storybook-assets
-npx acme create -s storybook-assets
+npx acme create -s storybook-assets --config <config json file>
 ```
 
 Set the `DEBUG` environment variable to output log messages
 
 ```
 DEBUG=acme:* npx acme pull --config <config json file> -d storybook-assets
-DEBUG=acme:* npx acme create -s storybook-assets
+DEBUG=acme:* npx acme create -s storybook-assets --config <config json file>
 ```
 or
 ```
@@ -35,7 +35,9 @@ This is the format for the expected config file. As of now, all fields are requi
     "componentsContentPath": "/content/core-components-examples/library",
     "pageContentContainerPath": "/jcr:content/root/responsivegrid",
     "componentsContainerType": "core-components-examples/components/demo/component",
-    "titleResourceType": "core/wcm/components/title/v2/title"
+    "titleResourceType": "core/wcm/components/title/v2/title",
+    "designDocUrl": "https://xd.adobe.com/view/<home design document id>",
+    "apiKey": "<XD api key"
 }
 ```
 
@@ -50,6 +52,8 @@ This is the format for the expected config file. As of now, all fields are requi
 7. `pageContentContainerPath` - Used for parsing the HTML of the Core Component example pages
 8. `componentsContainerType` - Component type that contains each example component
 9. `titleResourceType` - `acme` uses the Title component text on the example content pages to name each of the stories
+10. `designDocUrl` - The URL of the published XD design (optional)
+11. `apiKey` - Key for the Adobe XD api (optional)
 
 
 ## AEM Content
@@ -181,7 +185,7 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
 
     ```
     "storybook": "start-storybook -s ./storybook-assets -p 9001",
-    "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets"
+    "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets --config acme.settings.json"
     ```
 
 5. Ensure the AEM Core Component packages and sample content is installed on the instance specified in your `acme.settings.json`. The sample content installs to this location: `/content/core-components-examples/library`.
