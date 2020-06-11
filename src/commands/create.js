@@ -21,7 +21,6 @@ module.exports = {
                 default: 'aem-assets'
             })
             .config()
-            .demandOption('config')
     },
     handler: async (argv) => {
         const start = process.hrtime()

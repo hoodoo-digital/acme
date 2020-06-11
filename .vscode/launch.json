@@ -50,6 +50,18 @@
             "name": "acme create",
             "program": "${workspaceFolder}/index.js",
             "skipFiles": ["<node_internals>/**"],
+            "args": ["create"],
+            "env": {
+                "DEBUG": "acme:*"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "acme create with config",
+            "program": "${workspaceFolder}/index.js",
+            "skipFiles": ["<node_internals>/**"],
             "args": ["create", "--config", "test/resources/settings.json"],
             "env": {
                 "DEBUG": "acme:*"
