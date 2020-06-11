@@ -39,8 +39,8 @@ This is the format for the expected config file. As of now, all fields are requi
     "pageContentContainerPath": "/jcr:content/root/responsivegrid",
     "componentsContainerType": "core-components-examples/components/demo/component",
     "titleResourceType": "core/wcm/components/title/v2/title",
-    "designDocUrl": "https://xd.adobe.com/view/<home design document id>",
-    "apiKey": "<XD api key"
+    "designDocUrl": "<https://xd.adobe.com/view/<home design document id>",
+    "apiKey": "<XD api key>"
 }
 ```
 
