@@ -9,7 +9,7 @@ const log = require('debug')('acme-debug:generator')
 
 const noop = () => {}
 
-process.env.HYGEN_OVERWRITE = 1
+// process.env.HYGEN_OVERWRITE = 1
 
 const run = async (template, name, options) => {
     let args = [template, 'new', name]

@@ -1,5 +1,6 @@
 ---
 to: stories/<%= name %>.stories.js
+unless_exists: true
 ---
 import { withXD } from 'storybook-addon-xd-designs';
 import { StyleSystem } from 'storybook-aem-style-system';
