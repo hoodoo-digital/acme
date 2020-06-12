@@ -8,19 +8,22 @@
 ```
 npm install @hoodoo/acme
 npx acme pull --config <config json file> -d storybook-assets
-npx acme create -s storybook-assets
+npx acme create -s storybook-assets [--config <config json file>]
 ```
 
 Set the `DEBUG` environment variable to output log messages
 
 ```
 DEBUG=acme:* npx acme pull --config <config json file> -d storybook-assets
-DEBUG=acme:* npx acme create -s storybook-assets
+DEBUG=acme:* npx acme create -s storybook-assets [--config <config json file>]
 ```
 or
 ```
 export DEBUG=acme:*
 ```
+
+_NOTE: `config` cli option is optional. This is only required if there are designs to be referenced from Adobe XD._
+
 
 ## Configuration File
 
@@ -35,7 +38,9 @@ This is the format for the expected config file. As of now, all fields are requi
     "componentsContentPath": "/content/core-components-examples/library",
     "pageContentContainerPath": "/jcr:content/root/responsivegrid",
     "componentsContainerType": "core-components-examples/components/demo/component",
-    "titleResourceType": "core/wcm/components/title/v2/title"
+    "titleResourceType": "core/wcm/components/title/v2/title",
+    "designDocUrl": "<https://xd.adobe.com/view/<home design document id>",
+    "apiKey": "<XD api key>"
 }
 ```
 
@@ -50,6 +55,8 @@ This is the format for the expected config file. As of now, all fields are requi
 7. `pageContentContainerPath` - Used for parsing the HTML of the Core Component example pages
 8. `componentsContainerType` - Component type that contains each example component
 9. `titleResourceType` - `acme` uses the Title component text on the example content pages to name each of the stories
+10. `designDocUrl` - The URL of the published XD design (__optional__)
+11. `apiKey` - Key for the Adobe XD api (__optional__)
 
 
 ## AEM Content
@@ -107,6 +114,7 @@ Options:
   --help        Show help                                              [boolean]
   --version     Show version number                                    [boolean]
   --source, -s  Path to downloaded AEM assets   [string] [default: "aem-assets"]
+  --config      Path to JSON config file
 ```
 
 ## Generated Assets
@@ -128,10 +136,16 @@ Running `acme pull` "pulls" generated component markup, referenced images, js an
 `acme create` generates stories for each component variation under the `components` directory of the source directory defined by `--source` or `-s` option. The source directory would be the same as the destination directory in the `pull` command. The following assets are created:
 
 1. `stories`
+
    Contains `.stories.js` files for each component. Each file in turn contains individual stories for that component.
 
 2. `.storybook/preview.js`
+
    This file imports the assets added to the `resources` directory as well as the entry point to the webpack application at `/src/main/webpack/site/main.ts`--this enables storybook to render the components with the default CSS and JavaScript from the AEM Core Components along with your own custom CSS and JavaScript.
+
+3. `stories/artboards.json`
+
+   This file is only created if `designDocUrl` and `apiKey` are specified in the `acme.settings.json` file __AND__ the settings file is passed to the `create` command through the `config` option. It contains a list of all the artboards that are a part of the design document and their public urls.
 
 ## Example Setup
 
@@ -181,7 +195,7 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
 
     ```
     "storybook": "start-storybook -s ./storybook-assets -p 9001",
-    "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets"
+    "acme": "DEBUG=acme:* acme pull --config acme.settings.json -d storybook-assets && DEBUG=acme:* acme create -s storybook-assets --config acme.settings.json"
     ```
 
 5. Ensure the AEM Core Component packages and sample content is installed on the instance specified in your `acme.settings.json`. The sample content installs to this location: `/content/core-components-examples/library`.

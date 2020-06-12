@@ -24,7 +24,7 @@ export const <%= funcName%> = () => {
   name: '<%= storyName %>',
   parameters: {
     design: {
-      //artboardUrl: 'https://xd.adobe.com/view/a23a5b3e-a93d-4063-5532-cd55043e0488-d40b/screen/10bcabef-3186-433b-b5fb-ed8a56aacd0d/Button-Default',
+      artboardUrl: getArtboardUrl('')
     }
   }
 };

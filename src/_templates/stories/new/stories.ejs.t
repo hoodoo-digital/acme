@@ -5,7 +5,7 @@ unless_exists: true
 import { withXD } from 'storybook-addon-xd-designs';
 import { StyleSystem } from 'storybook-aem-style-system';
 import { aemMetadata } from '@storybook/aem';
-import { acmeFetch } from '@hoodoo/acme';
+import { acmeFetch, getArtboardUrl } from '@hoodoo/acme';
 
 export default {
   title: '<%= Name %>',
