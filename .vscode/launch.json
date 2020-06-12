@@ -52,7 +52,7 @@
             "skipFiles": ["<node_internals>/**"],
             "args": ["create"],
             "env": {
-                "DEBUG": "acme:*"
+                "DEBUG": "acme*"
             },
             "console": "integratedTerminal"
         }
