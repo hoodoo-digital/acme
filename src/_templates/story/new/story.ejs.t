@@ -14,7 +14,7 @@ export const <%= funcName%> = () => {
     template: acmeFetch(<%= path %>),
     aemMetadata: {
       decorationTag: {
-        cssClasses: []  // Add css class(es) applicable to this story
+        cssClasses: [StyleSystem]  // Add additional css class(es) applicable to this story as needed
       }
     }
   }
