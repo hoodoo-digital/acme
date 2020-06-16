@@ -10,12 +10,7 @@ import { acmeFetch, getArtboardUrl } from '@hoodoo/acme';
 export default {
   title: '<%= Name %>',
   decorators: [
-    withXD,
-    aemMetadata({
-      decorationTag: {
-        cssClasses: [StyleSystem]
-      }
-    })
+    withXD
   ],
   parameters: {
     aemStyleSystem: {
