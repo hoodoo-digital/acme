@@ -7,8 +7,9 @@
 
 ```
 npm install @hoodoo/acme
-npx acme pull --config <config json file> -d storybook-assets
-npx acme create -s storybook-assets [--config <config json file>]
+npx acme init
+npx acme pull --config acme.settings.json -d storybook-assets
+npx acme create -s storybook-assets [--config acme.settings.json]
 ```
 
 Set the `DEBUG` environment variable to output log messages
