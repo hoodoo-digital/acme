@@ -190,7 +190,7 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
     };
     ```
 
-3. Run `acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
+3. Run `npx acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
 
 4. Inside your `package.json` add the following commands to the `scripts` section
 
