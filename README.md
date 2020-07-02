@@ -7,8 +7,9 @@
 
 ```
 npm install @hoodoo/acme
-npx acme pull --config <config json file> -d storybook-assets
-npx acme create -s storybook-assets [--config <config json file>]
+npx acme init
+npx acme pull --config acme.settings.json -d storybook-assets
+npx acme create -s storybook-assets [--config acme.settings.json]
 ```
 
 Set the `DEBUG` environment variable to output log messages
@@ -189,7 +190,7 @@ Steps to get up and running with `acme` on a fresh AEM archetype project.
     };
     ```
 
-3. Run `acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
+3. Run `npx acme init` inside the `ui.frontend` directory and follow the prompts to create your `acme.settings.json` file as described in the "Configuration File" section of this document.
 
 4. Inside your `package.json` add the following commands to the `scripts` section
 
